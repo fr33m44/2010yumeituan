@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+
+	<title>JavaScript滚动文本</title>
+	<meta name="Description" content="Javascript实现文本滚滚动效果，文档结构与行为分离。" />
+	<meta name="Keywords" content="滚动文本,实例,DOM,JavaScript" /> 
+    </head>
+
+    <body>
+	<div id="wrapper">   
+	    <div id="content">
+		<h1 id="title">JavaScript滚动文本</h1> 
+
+		<script type="text/javascript">
+		    //添加事件响应函数的函数
+		    function addEventSimple(obj,evt,fn){
+			if(obj.addEventListener){
+			    obj.addEventListener(evt,fn,false);
+			}else if(obj.attachEvent){
+			    obj.attachEvent('on'+evt,fn);
+			}
+		    }
+		    addEventSimple(window,'load',initScrolling);
+		    var contentHeight;
+		    var scrollingBox;
+		    var scrollingInterval;
+		    //1.初始化滚动新闻
+		    function initScrolling(){
+			scrollingBox = document.getElementById("scrollText");
+			scrollingBox.style.height = "40px";
+			scrollingBox.style.overflow = "hidden";
+			scrollingInterval = setInterval("scrolling()",50);
+			scrollingBox.onmouseover = over;
+			scrollingBox.onmouseout = out;
+		    }
+		    //3.滚动效果
+		    function scrolling(){
+			//开始滚动,origin是原来scrollTop
+			var origin = scrollingBox.scrollTop++;
+			//如果到底了
+			if(origin == scrollingBox.scrollTop){
+			    //延时固定时间后返回顶部
+			    setTimeout("scrollingBox.scrollTop=0",1000)
+			}
+		    }
+		    function over(){
+			clearInterval(scrollingInterval);
+		    }
+		    function out(){
+			scrollingInterval = setInterval("scrolling()",50);
+		    }
+		</script> 
+		<div id="scrollText">
+		    <h2>示例标题</h2>
+		    <p>实例新闻，可以添加任何想要滚动的内容。包括图片等等。</p>
+
+		    <p>第二行示例。</p>
+		    <p>第三行示例。</p>
+		    <p>……</p>
+		</div>
+		
+		<pre>&lt;script type=&quot;text/javascript&quot;&gt;<br />//添加事件响应函数的函数<br />function addEventSimple(obj,evt,fn){<br />	if(obj.addEventListener){<br />		obj.addEventListener(evt,fn,false);<br />	}else if(obj.attachEvent){<br />		obj.attachEvent('on'+evt,fn);<br />	}<br />}<br />addEventSimple(window,'load',initScrolling);<br />var contentHeight;<br />var scrollingBox;<br />var scrollingInterval;<br />//1.初始化滚动新闻<br />function initScrolling(){<br />	scrollingBox = document.getElementById(&quot;scrollText&quot;);<br />	scrollingBox.style.height = &quot;40px&quot;;<br />	scrollingBox.style.overflow = &quot;hidden&quot;;<br />	scrollingInterval = setInterval(&quot;scrolling()&quot;,50);<br />	scrollingBox.onmouseover = over;<br />	scrollingBox.onmouseout = out;	<br />}<br />//3.滚动效果<br />function scrolling(){<br />	//开始滚动,origin是原来scrollTop<br />	var origin = scrollingBox.scrollTop++;<br />	//如果到底了<br />	<span class="important">if(origin == scrollingBox.scrollTop)</span>{<br />		//延时固定时间后返回顶部<br />		setTimeout(&quot;scrollingBox.scrollTop=0&quot;,1000)<br />	}<br />}<br /><span class="important">function over(){<br />	clearInterval(scrollingInterval);<br />}<br />function out(){<br />	scrollingInterval = setInterval(&quot;scrolling()&quot;,50);<br />}</span><br />&lt;/script&gt;</pre>
+
+		<p>由于滚动到底之后scrollTop就不能再++了，可以通过这个属性判断是否已经滚动到头。鼠标移出和经过的效果比较简单，只要分别停止滚动和开始滚动就可以了。</p>
+		<p>这个代码和JavaScript的滚动新闻代码相比，文档行为和结构得到了分离，只要给要滚动的容器添加一个id就可以了。</p>
+		  
+ 
+	    </div> 
+	</div>
+    </body>
+</html>
+

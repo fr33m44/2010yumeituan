@@ -1,0 +1,29 @@
+<div id="ft">
+    <p class="contact"><a  href="feedback.php?t=1">意见反馈</a></p>
+    <ul class="nav cf">
+	<!--{foreach from=$group_help item=help}-->
+	<li class="col">
+	    <h3>{$help.cat_name}</h3>
+	    <ul class="sub-list">
+		<!--{foreach from=$help.article item=article}-->
+		<li><a href="{$article.url}">{$article.title}</a></li>
+		<!--{/foreach}-->
+	    </ul>
+	</li>
+	<!--{/foreach}-->
+	<li class="col end">
+	    <div class="logo-footer">
+		<a href="{$index_url}"><img src="images/logo-footer.gif" alt=""></a>
+	    </div>
+	</li>
+    </ul>
+    <div class="copyright">
+	<p> &copy; <span title="I:-; Q:0; S:0; C:0; F:0; T:6.86; H:v03">2010</span> yumeituan.com 渝ICP备070791号 </p>
+    </div>
+    <ul class="cert cf">
+            <li class="itrust">网上交易保障"</li>
+	    <li class="hlwxh">互联网协会信任网站"</li>
+	    <li class="alipay">支付宝特约商家"</li>
+	    <li class="tenpay">财付通特约商家"</li>
+    </ul>
+</div>

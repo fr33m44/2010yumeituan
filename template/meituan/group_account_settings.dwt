@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>{$group_shoptitle},{$group_shopdesc}| {$city_info.city_title}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="slides.css" rel="stylesheet" type="text/css" />
+	<link href="container.css" rel="stylesheet" type="text/css" />
+	<meta name="description" content="{$city_info.city_desc}" />
+	<meta name="keywords" content="{$city_info.city_keyword}" />
+	<!-- TemplateBeginEditable name="doctitle" -->
+	<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+	{insert_scripts files='groupontime.js,jquery.min.js,dialog-min.js,slides.js,group.js'}
+    </head>
+    <body class="bg-alt ">
+	<div id="doc">
+	    <!-- #BeginLibraryItem "/library/group_header.lbi" --><!-- #EndLibraryItem -->
+	    <!--{if $msg}-->
+	    <div id="sysmsg-{$msg.type}" class="sysmsgw"><div class="sysmsg">
+		    <p>{$msg.content}</p>
+		    <span class="close">关闭</span>
+		</div>
+	    </div>
+	    <!--{/if}-->
+	    <div id="bdw" class="bdw">
+		<div id="bd" class="cf">
+		    <div id="settings">
+			<div class="settings-box" id="content">
+			    <div id="dashboard" class="dashboard">
+				<!-- #BeginLibraryItem "/library/group_user_menu.lbi" --><!-- #EndLibraryItem -->
+			    </div>
+			    <div class="box clear">
+				<div class="box-top"></div>
+				<div class="box-content">
+				    <div class="head"><h2>账户设置</h2></div>
+				    <div class="sect">
+					<form action="account.php" method="post" id="settings-form">
+					    <div class="field email">
+						<label for="settings-email-address">Email</label>
+						<input type="text" value="{$profile.email}" readonly="readonly" class="f-input readonly" id="settings-email-address" name="email" size="30">
+					    </div>
+					    <div class="field username">
+						<label for="settings-username">用户名</label>
+						<input type="text" value="{$profile.user_name}" readonly="readonly"  class="f-input" id="settings-username" name="username" size="30">
+					    </div>
+					    <div class="field password">
+						<label for="settings-password">新密码</label>
+						<input type="password" autocomplete="off" class="f-input" id="settings-password" name="new_password" size="30">
+						<span class="hint">如果不想修改密码，请保持空白</span>
+					    </div>
+					    <div class="field password">
+						<label for="settings-password-confirm">确认新密码</label>
+						<input type="password" autocomplete="off" class="f-input" id="settings-password-confirm" name="comfirm_password" size="30">
+					    </div>
+					    <div class="field mobile">
+						<label for="settings-mobile">手机号</label>
+						<input type="text" value="{$profile.mobile_phone}" class="f-input" id="settings-mobile" name="mobile_phone" size="30">
+						<span class="hint">{$group_cardname}密码将通过短信发到手机上</span>
+					    </div>
+					    <div class="clear"></div>
+					    <div class="act">
+						<input type="hidden" name="act" value="act_settings" />
+						<input type="submit" class="formbutton" id="settings-submit" name="commit" value="更改">
+					    </div>
+					</form>
+				    </div>
+				</div>
+				<div class="box-bottom"></div>
+			    </div>
+			</div>
+			<div class="rail" id="sidebar">
+			</div>
+		    </div>
+		</div> <!-- bd end -->
+	    </div> <!-- bdw end -->
+
+	    <div id="ftw">
+		<!-- #BeginLibraryItem "/library/group_footer.lbi" --><!-- #EndLibraryItem -->
+	    </div>
+
+	</div> <!-- doc end -->
+
+	{insert_scripts files='mt/utilities.js,mt/core.js,mt/app-deal.js,mt/container-min.js,mt/app-misc.js'}
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Core.init();
+	    });
+	</script>
+    </body>
+</html>

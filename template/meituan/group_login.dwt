@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{$group_shoptitle},{$group_shopdesc}| {$city_info.city_title}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="slides.css" rel="stylesheet" type="text/css" />
+    <link href="container.css" rel="stylesheet" type="text/css" />
+    <meta name="description" content="{$city_info.city_desc}" />
+    <meta name="keywords" content="{$city_info.city_keyword}" />
+    <!-- TemplateBeginEditable name="doctitle" -->
+    <!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+    </head>
+    <body class="yui-skin-sam">
+	<div id="doc">
+	    <!-- #BeginLibraryItem "/library/group_header.lbi" --><!-- #EndLibraryItem -->
+	    <div id="bdw" class="bdw">
+		<div id="bd" class="cf">
+		    <div id="content">
+			<div style="position:relative;">
+			    <div id="deal-buy-login">
+				<h3>已有{$group_shopname}账户？</h3>
+				<form action="buy.php?a=login" method="post" id="deal-buy-form-login">
+				    <div id="deal-buy-login-form">
+					<p><span>Email</span><input type="text" class="f-input" id="deal-buy-email" name="username" size="30" value="" /></p>
+
+					<p><span>密码</span><input type="password" class="f-input" name="password" size="30"/></p>
+					<p class="act">
+					    <input type="hidden" name="act" value="signin" />
+					    <input type="submit"  class="formbutton" name="login" value="登录"/>
+					</p>
+				    </div>
+				</form>
+			    </div>
+			</div>
+			<div class="box" id="deal-buy-signup">
+			    <div class="box-top"></div>
+			    <div class="box-content" id="signup">
+				<div class="head"><h2>请注册或登录<span>快速注册，只需30秒</span></h2></div>
+
+				<div class="sect">
+				    <form action="buy.php?a=login" method="post" id="signup-user-form" style="margin-top:10px;">
+					<div class="field email">
+					    <label for="signup-email-address">Email</label>
+					    <input type="text" size="30" name="email" id="signup-email-address" class="f-text" autocomplete="off" value="" />
+					    <div id="signup-email-auto" class="email-auto"></div>
+					    <span id="email-hint">&nbsp;</span>
+					    <span class="hint">登录及找回密码用，不会公开</span>
+
+					</div>
+					<div class="field username">
+					    <label for="signup-username">用户名</label>
+					    <input type="text" size="30" name="username" id="signup-username" class="f-text" autocomplete="off" value="" />
+					    <span id="username-hint">&nbsp;</span>
+					    <span class="hint">4-16 个字符，一个汉字为两个字符</span>
+					</div>
+					<div class="field password">
+
+					    <label for="signup-password">密码</label>
+					    <input type="password" size="30" name="password" id="signup-password" class="f-text" autocomplete="off" />
+					    <span id="password-hint">&nbsp;</span>
+					    <span class="hint">最少 6 个字符</span>
+					</div>
+					<div class="field password">
+					    <label for="signup-password-confirm">确认密码</label>
+					    <input type="password" size="30" name="password2" id="signup-password-confirm" class="f-text" autocomplete="off" />
+
+					    <span id="password2-hint">&nbsp;</span>
+					    <span class="hint">&nbsp;</span>
+					</div>
+					<div class="field city">
+					    <label id="enter-address-city-label" for="signup-city">所在城市</label>
+					    <select name="cityid" autocomplete="off" class="f-city" id="signup-city">
+						<option value="1" selected="selected">北京</option><option value="10" >上海</option><option value="57" >武汉</option><option value="42" >西安</option><option value="20" >广州</option><option value="56" >合肥</option><option value="30" >深圳</option><option value="50" >杭州</option><option value="40" >天津</option><option value="55" >南京</option><option value="51" >宁波</option><option value="59" >成都</option><option value="70" >长沙</option><option value="73" >郑州</option><option value="62" >厦门</option><option value="45" >重庆</option><option value="44" >福州</option><option value="76" >石家庄</option><option value="65" >大连</option><option value="66" >沈阳</option><option value="60" >青岛</option><option value="80" >苏州</option><option value="52" >无锡</option><option value="114" >昆明</option><option value="96" >济南</option><option value="105" >哈尔滨</option><option value="82" >南通</option><option value="116" >长春</option><option value="117" >汕头</option><option value="107" >贵阳</option><option value="112" >温州</option><option value="101" >太原</option><option value="104" >烟台</option><option value="89" >常州</option><option value="0">其他</option>                        </select>
+
+					    <p class="enter-city" style="display:none "><input id="enter-address-city" name="cityname" class="f-text f-cityname" type="text" autocomplete="off" value="" /></p>
+					</div>
+					<div class="field subscribe">
+					    <input type="checkbox" value="1" name="subscribe" id="subscribe" class="f-check" checked="checked" autocomplete="off" />
+					    <label for="subscribe">订阅每日最新团购信息</label>
+					    <span class="subscribe-hint">订阅后将收到每日团购信息邮件，可随时取消订阅</span>
+					</div>
+					<div class="act">
+					    <input type="hidden" value="signup" name="act" class=" ">
+					    <input type="submit" value="注册" name="commit" id="signup-submit" class="formbutton"/>
+					</div>
+				    </form>
+				</div>
+			    </div>
+			    <div class="box-bottom"></div>
+			</div>
+		    </div>
+		</div> <!-- bd end -->
+
+	    </div> <!-- bdw end -->
+
+	    <div id="ftw">
+		<div id="ft">
+		    <p class="contact"><a gaevent="InnerLink|Click|/InnerLink/Footer/feedback#/deal/login/bjylf" href="/beijing/deal/consultations/default#consult-form-head">问题反馈</a></p>
+		    <ul class="nav cf">
+			<li class="col">
+			    <h3>用户帮助</h3>
+			    <ul class="sub-list">
+
+				<li><a href="/learn/guide">玩转美团</a></li>
+				<li><a href="/help/faq">常见问题</a></li>
+				<li><a href="/help/email">邮箱白名单设置</a></li>
+				<li><a href="/help/api">开放API</a></li>
+			    </ul>
+			</li>
+			<li class="col">
+
+			    <h3>获取更新</h3>
+			    <ul class="sub-list">
+				<li><a href="/maillist/subscribe/beijing">邮件订阅</a></li>
+				<li><a href="http://t.sina.com.cn/meituan" target="_blank">美团新浪微博</a></li>
+				<li><a href="http://www.kaixin001.com/meituan" target="_blank">美团开心网主页</a></li>
+				<li><a href="/feed/beijing" target="_blank">RSS订阅</a></li>
+
+			    </ul>
+			</li>
+			<li class="col">
+			    <h3>商务合作</h3>
+			    <ul class="sub-list">
+				<li><a href="/feedback/seller">提供团购信息</a></li>
+				<li><a href="/about#contact">市场合作</a></li>
+
+			    </ul>
+			</li>
+			<li class="col">
+			    <h3>公司信息</h3>
+			    <ul class="sub-list">
+				<li><a href="/about">关于美团</a></li>
+				<li><a href="/about/press">媒体报道</a></li>
+
+				<li><a href="/about/job">加入我们</a></li>
+				<li><a href="/about/privacy">隐私声明</a></li>
+			    </ul>
+			</li>
+			<li class="col end">
+			    <div class="logo-footer">
+				<a href="/"><img src="http://s1.meituan.com/css/i/logo-footer.gif" alt=""/></a>
+			    </div>
+
+			</li>
+		    </ul>
+		    <div class="copyright">
+			<p> © <span title="I:2; Q:2; S:2; C:0; F:0; T:9.33; H:v01">2010</span> meituan.com 京ICP证070791号 </p>
+		    </div>
+		    <ul class="cert cf">
+
+			<li class="bcp">电子商务信用认证</li>
+			<li class="itrust">网信认证</li>
+			<li class="alipay">支付宝特约商家</li>
+			<li class="tenpay">财付通诚信商家</li>
+		    </ul>
+		</div>
+	    </div>
+
+	</div> <!-- doc end -->
+	{insert_scripts files='mt/utilities.js,mt/core.js,mt/app-deal.js,mt/container-min.js'}
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Core.init();
+	    });
+	</script>
+	{insert_scripts files='mt/app-signup.js'}
+	<script type="text/javascript">
+			YAHOO.util.Event.onDOMReady(function(){
+			    MT.app.Signup.init();
+			});
+	</script>
+
+    </body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>{$group_shoptitle},{$group_shopdesc}| {$city_info.city_title}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="slides.css" rel="stylesheet" type="text/css" />
+	<link href="container.css" rel="stylesheet" type="text/css" />
+	<meta name="description" content="{$city_info.city_desc}" />
+	<meta name="keywords" content="{$city_info.city_keyword}" />
+	<!-- TemplateBeginEditable name="doctitle" -->
+	<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+	{insert_scripts files='groupontime.js,jquery.min.js,dialog-min.js,slides.js,group.js'}
+    </head>
+    <body class="bg-alt ">
+	<div id="doc">
+	    <!-- #BeginLibraryItem "/library/group_header.lbi" --><!-- #EndLibraryItem -->
+	    <div id="bdw" class="bdw">
+		<div id="bd" class="cf">
+		    <div id="referrals">
+			<div class="finder" id="content">
+			    <div class="box clear">
+				<div class="box-top"></div>
+				<div class="box-content">
+				    <div class="head"><h2>邀请MSN好友</h2></div>
+				    <div class="sect contacts">
+					<p class="intro">每邀请一位好友首次购买，您将获 <strong>{$rebate}</strong> 元返利</p>
+					<div class="contacts-box" id="finder_invite">
+                                            <form id="finder-contacts-form" action="invite_msn.php" method="post">
+						<h3>找到 7 个好友，您可以邀请他们：</h3>
+						<div class="hd">
+						    <input type="checkbox" checked="checked" value="1" name="alluser" id="finder-selectall"><label for="finder-selectall">选择所有人</label></div>
+						<div class="bd">
+						    <table class="contacts-table" id="finder-contacts-table">
+							<tbody>
+							    <tr class=""><td class="checkbox"><input type="checkbox" checked="checked" value="zzhzin@hotmail.com	zzhzin@hotmail.com" name="sendto[]"></td><td class="contact">zzhzin@hotmail.com</td><td class="email">&lt;zzhzin@hotmail.com&gt;</td></tr>
+							    <tr class="alt"><td class="checkbox"><input type="checkbox" checked="checked" value="reader@csdn.net	reader@csdn.net (电子邮件地址..." name="sendto[]"></td><td class="contact">reader@csdn.net (电子邮件地址...</td><td class="email">&lt;reader@csdn.net&gt;</td></tr>
+							    <tr class=""><td class="checkbox"><input type="checkbox" checked="checked" value="msn1028@inezha.com	msn1028@inezha.com" name="sendto[]"></td><td class="contact">msn1028@inezha.com</td><td class="email">&lt;msn1028@inezha.com&gt;</td></tr>
+							    <tr class="alt"><td class="checkbox"><input type="checkbox" checked="checked" value="msn1003@anothr.com	哪吒提醒机器人" name="sendto[]"></td><td class="contact">哪吒提醒机器人</td><td class="email">&lt;msn1003@anothr.com&gt;</td></tr>
+							    <tr class=""><td class="checkbox"><input type="checkbox" checked="checked" value="deng6897@163.com	deng6897@163.com" name="sendto[]"></td><td class="contact">deng6897@163.com</td><td class="email">&lt;deng6897@163.com&gt;</td></tr>
+							    <tr class="alt"><td class="checkbox"><input type="checkbox" checked="checked" value="jkjackfm@gmail.com	Jack." name="sendto[]"></td><td class="contact">Jack.</td><td class="email">&lt;jkjackfm@gmail.com&gt;</td></tr>
+							    <tr class=""><td class="checkbox"><input type="checkbox" checked="checked" value="digu003@hotmail.com	嘀嘀" name="sendto[]"></td><td class="contact">嘀嘀</td><td class="email">&lt;digu003@hotmail.com&gt;</td></tr>                                </tbody></table>
+						</div>
+						<p class="enter-name">
+						    <label for="finder-name" class="f-label">您的姓名 <span>(建议使用真实姓名，有助于好友接受您的邀请)</span></label><br>
+						    <input type="text" value="" class="f-text" id="finder-name" name="name">
+						</p>
+						<p class="commit">
+						    <input type="hidden" value="52" name="cityid">
+						    <input type="hidden" value="2090339" name="fromid">
+						    <input type="submit" value="邀请" class="formbutton">
+						</p>
+					    </form>
+
+					</div>
+				    </div>
+				</div>
+				<div class="box-bottom"></div>
+			    </div>
+			</div>
+</div>
+		</div> <!-- bd end -->
+	    </div> <!-- bdw end -->
+
+	    <div id="ftw">
+		<!-- #BeginLibraryItem "/library/group_footer.lbi" --><!-- #EndLibraryItem -->
+	    </div>
+
+	</div> <!-- doc end -->
+
+	{insert_scripts files='mt/utilities.js,mt/core.js,mt/app-deal.js,mt/container-min.js,mt/app-misc.js'}
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Core.init();
+	    });
+	</script>
+	<script type="text/javascript" charset="utf-8">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.widget.selectAndCopy('share-copy-text', 'share-copy-button');
+		MT.app.Finder.submitProcess();
+	    });
+	</script>
+
+    </body>
+</html>

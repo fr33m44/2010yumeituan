@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>{$group_shoptitle},{$group_shopdesc}| {$city_info.city_title}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="slides.css" rel="stylesheet" type="text/css" />
+	<link href="container.css" rel="stylesheet" type="text/css" />
+	<meta name="description" content="{$city_info.city_desc}" />
+	<meta name="keywords" content="{$city_info.city_keyword}" />
+	<!-- TemplateBeginEditable name="doctitle" -->
+	<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+	<script type="text/javascript">
+	    var process_request = "loading...";
+	</script>
+	{insert_scripts files='transport.js,region.js'}
+	<script type="text/javascript">
+	    region.isAdmin=false;
+	</script>
+    </head>
+    <body class="bg-alt ">
+	<div id="doc">
+	    <!-- #BeginLibraryItem "/library/group_header.lbi" --><!-- #EndLibraryItem -->
+	    <!--{if $msg}-->
+	    <div id="sysmsg-{$msg.type}" class="sysmsgw"><div class="sysmsg">
+		    <p>{$msg.content}</p>
+		    <span class="close">关闭</span>
+		</div>
+	    </div>
+	    <!--{/if}-->
+	    <div id="bdw" class="bdw">
+		<div id="bd" class="cf">
+		    <div id="settings">
+			<div class="settings-box" id="content">
+			    <div id="dashboard" class="dashboard">
+				<!-- #BeginLibraryItem "/library/group_user_menu.lbi" --><!-- #EndLibraryItem -->
+			    </div>
+			    <div class="box clear">
+				<div class="box-top"></div>
+				<div class="box-content">
+				    <div class="head"><h2>配送地址</h2></div>
+				    <div class="sect">
+					<form action="account.php?act=address" method="post" id="settings-form">
+					    <div class="field email">
+						<label for="settings-email-address">收货人姓名</label>
+						<input type="text" value="{$consignee.consignee}" class="f-input" id="settings-email-address" name="consignee" size="30">
+						<span class="hint">姓名请与有效证件保持一致，便于查收物品</span>
+					    </div>
+					    <div class="field username">
+						<label for="settings-username">省市区</label>
+						<select name="province" id="selProvinces" onchange="region.changed(this, 2, 'selCities')" style="border:1px solid #ccc;">
+						    <option value="0">请选择省区</option>
+						    <!-- {foreach from=$province_list item=province} -->
+						    <option value="{$province.region_id}" {if $consignee.province eq $province.region_id}selected{/if}>{$province.region_name}</option>
+						    <!-- {/foreach} -->
+						</select>
+						<select name="city" id="selCities" onchange="region.changed(this, 3, 'selDistricts')" style="border:1px solid #ccc;">
+						    <option value="0">请选择城市</option>
+						    <!-- {foreach from=$city_list item=city} -->
+						    <option value="{$city.region_id}" {if $consignee.city eq $city.region_id}selected{/if}>{$city.region_name}</option>
+						    <!-- {/foreach} -->
+						</select>
+						<select name="district" id="selDistricts" {if $consignee.district lte '0'}style="display:none"{/if} onchange="region.set_address()">
+							<option value="0">请选择市区</option>
+						    <!-- {foreach from=$district_list item=district} -->
+						    <option value="{$district.region_id}" {if $consignee.district eq $district.region_id}selected{/if}>{$district.region_name}</option>
+						    <!-- {/foreach} -->
+
+						</select> 
+					    </div>
+					    <div class="field username">
+						<label for="settings-username">街道地址</label>
+						<input type="text" value="{$consignee.address}"  class="f-input" id="settings-username" name="address" size="30">
+						<span class="hint">为了能及时收到物品，请正确填写</span>
+					    </div>
+					    <div class="field password">
+						<label for="settings-password">邮政编码</label>
+						<input type="text" autocomplete="off" class="f-input" id="settings-password" name="zipcode" value="{$consignee.zipcode}" size="30">
+					    </div>
+					    <div class="field password">
+						<label for="settings-password-confirm">联系电话</label>
+						<input type="text" autocomplete="off" class="f-input" id="settings-password-confirm" name="mobile" value="{$consignee.mobile}" size="30">
+					    </div>
+					    <div class="clear"></div>
+					    <div class="act">
+						<input type="hidden" name="act" value="act_address" />
+						<input type="hidden" name="address_id" value="{$consignee.address_id}" />
+						<input type="submit" class="formbutton" id="settings-submit" name="commit" value="更改">
+					    </div>
+					</form>
+				    </div>
+				</div>
+				<div class="box-bottom"></div>
+			    </div>
+			</div>
+			<div class="rail" id="sidebar">
+			</div>
+		    </div>
+		</div> <!-- bd end -->
+	    </div> <!-- bdw end -->
+
+	    <div id="ftw">
+		<!-- #BeginLibraryItem "/library/group_footer.lbi" --><!-- #EndLibraryItem -->
+	    </div>
+
+	</div> <!-- doc end -->
+
+	{insert_scripts files='mt/utilities.js,mt/core.js,mt/app-deal.js,mt/container-min.js,mt/app-misc.js'}
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Core.init();
+	    });
+	</script>
+    </body>
+</html>

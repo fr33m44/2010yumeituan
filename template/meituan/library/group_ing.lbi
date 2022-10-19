@@ -1,0 +1,27 @@
+<!--{if $today_g}-->
+<div class="sbox side-box">
+    <div class="sbox-top"></div>
+    <div class="sbox-content">
+	<div class="tip today-deal">
+	    <h2><!--{if $smarty.server.PHP_SELF eq '/stage.php'}-->今日团购<!--{else}-->今日其他团购<!--{/if}--></h2>
+	    <!--{foreach from=$today_g item=group key=k}-->
+	    <h4 class="first" {if $k neq 0}style="padding-top:20px;{/if}"><a target="_blank" title="{$group.group_name}" href="{$group.url}">{$group.group_name|truncate:30}</a></h4>
+	    <div class="sideinfo">
+		<div class="deal-pic">
+		    <a target="_blank" title="{$group.group_name}" href="{$group.url}">
+			<img width="200" height="121" src="{$group.group_image}">
+		    </a>
+		</div>
+		<p class="total">
+		    <span class="count"><strong>{$group.orders_num}</strong>人购买</span>
+		    <a class="buy" href="buy.php?a=cart&id={$group.group_id}"><img width="54" height="25" src="images/btn-sidedeal-buy.png"></a>
+		</p>
+		<p class="price">原价：<strong class="old"><span class="money">¥</span><?php echo intval($this->_var['group']['market_price']) ?></strong>折扣：<strong class="discount">{$group.group_rebate}折</strong><br>现价：<strong><span class="money">¥</span>{$group.group_price}</strong>节省：<strong><span class="money">¥</span>{$group.lack_price}</strong><br>
+		</p>
+	    </div>
+	    <!--{/foreach}-->
+	</div>
+    </div>
+    <div class="sbox-bottom"></div>
+</div>
+<!--{/if}-->

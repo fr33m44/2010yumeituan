@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>{$group_shoptitle},{$group_shopdesc}| {$city_info.city_title}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="slides.css" rel="stylesheet" type="text/css" />
+	<link href="container.css" rel="stylesheet" type="text/css" />
+	<meta name="description" content="{$city_info.city_desc}" />
+	<meta name="keywords" content="{$city_info.city_keyword}" />
+	<!-- TemplateBeginEditable name="doctitle" -->
+	<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+	{insert_scripts files='groupontime.js,jquery.min.js,dialog-min.js,slides.js,group.js'}
+    </head>
+    <!--
+    玩转渝美团      55	learn
+    新手指南	56	 help
+    常见问题	48	 help
+    支付方式	57	 help
+    关于渝美	40	 about
+    //邮件白名单    cat_id 18 help
+
+    -->
+    <body class="bg-alt">
+	<div id="doc">
+	    <!-- #BeginLibraryItem "/library/group_header.lbi" --><!-- #EndLibraryItem -->
+	    <div id="bdw" class="bdw">
+		<div id="bd" class="cf">
+		    {if $smarty.get.id eq 55 || $smarty.get.id eq 67}
+		    <div id="learn">
+		    {else}
+			<div id="help">
+		    {/if}
+			    <div {if $article.cat_id eq 18}class="email"{else}class="faq"{/if} id="content">
+			    {if $smarty.get.id eq 55 or $smarty.get.id eq 56}
+				<div id="dashboard" class="dashboard">
+				    <ul>
+					<li {if $smarty.get.id eq 55}class="current"{/if}><a href="help.php?id=55">玩转{$group_shopname}</a><span></span></li>
+					<li {if $smarty.get.id eq 56}class="current"{/if}><a href="help.php?id=56">新手指南</a><span></span></li>
+				    </ul>
+				</div>
+			    {/if}
+			    {if  $smarty.get.id eq 48 or $smarty.get.id eq 57}
+				<div id="dashboard" class="dashboard">
+				    <ul>
+					<li {if $smarty.get.id eq 48}class="current"{/if}><a href="help.php?id=48">常见问题</a><span></span></li>
+					<li {if $smarty.get.id eq 57}class="current"{/if}><a href="help.php?id=57">支付方式</a><span></span></li>
+				    </ul>
+				</div>
+			    {/if}
+			    {if  $smarty.get.id eq 40 or $smarty.get.id eq 41 or $smarty.get.id eq 42}
+				<div id="dashboard" class="dashboard">
+				    <ul>
+					<li {if $smarty.get.id eq 40}class="current"{/if}><a href="help.php?id=40">关于{$group_shopname}</a><span></span></li>
+					<li {if $smarty.get.id eq 41}class="current"{/if}><a href="help.php?id=41">联系方式</a><span></span></li>
+					<li {if $smarty.get.id eq 42}class="current"{/if}><a href="help.php?id=42">加入我们</a><span></span></li>
+				    </ul>
+				</div>
+			    {/if}
+
+			    {if $smarty.get.id eq 55 or $smarty.get.id eq 56 or $smarty.get.id eq 48 or $smarty.get.id eq 57 or $smarty.get.id eq 40 or $smarty.get.id eq 41 or $smarty.get.id eq 42}
+				<div class="box clear">
+			    {else}
+				    <div class="box">
+			    {/if}
+					<div class="box-top"></div>
+					<div class="box-content">
+					    <div class="head"><h2>{$article.title}</h2></div>
+					    <div class="sect">
+					{$article.content}
+					    </div>
+					</div>
+					<div class="box-bottom">
+					    <div class="go-top"><a href="#doc"><span class="top-arrow">↑</span>顶部</a></div>
+					</div>
+				    </div>
+				</div>
+				{if $smarty.get.id eq 54}
+				<div id="sidebar">
+				    <div class="sbox-white">
+					<div class="sbox-top"></div>
+					<div class="sbox-content">
+					    <div class="side-tip">
+						<h3 class="first">美团网开放API是什么？</h3>
+						<p>美团网开放API，是美团网为第三方开发者提供访问美团网数据的REST接口。开发者可以使用美团网数据，创造新奇有趣的应用程序。</p>
+						<h3>使用开放API有什么条款？</h3>
+						<p>美团网开放目前在测试期，供开发者测试使用。美团网保留一切权利。</p>
+					    </div>
+					</div>
+					<div class="sbox-bottom"></div>
+				    </div>
+				</div>
+				{elseif $article.cat_id eq 18}
+				<div id="sidebar">
+				    <div class="sbox">
+					<div class="sbox-top"></div>
+					<div class="sbox-content">
+					    <div class="email-side-tip">
+						<ul>
+						    <li {if $smarty.get.id eq 58}class="current"{/if} ><a href="help.php?id=58">网易邮箱</a></li>
+						    <li {if $smarty.get.id eq 59}class="current"{/if}><a href="help.php?id=59">QQ邮箱</a></li>
+						    <li {if $smarty.get.id eq 60}class="current"{/if}><a href="help.php?id=60">Gmail</a></li>
+						    <li {if $smarty.get.id eq 61}class="current"{/if}><a href="help.php?id=61">Hotmail</a></li>
+						    <li {if $smarty.get.id eq 62}class="current"{/if}><a href="help.php?id=62">新浪邮箱</a></li>
+						    <li {if $smarty.get.id eq 63}class="current"{/if}><a href="help.php?id=63">雅虎邮箱</a></li>
+						    <li {if $smarty.get.id eq 64}class="current"{/if}><a href="help.php?id=64">搜狐邮箱</a></li>
+						    <li {if $smarty.get.id eq 65}class="current"{/if}><a href="help.php?id=65">139邮箱</a></li>
+						    <li {if $smarty.get.id eq 66}class="current"{/if}><a href="help.php?id=66">其他邮箱</a></li>
+						</ul>
+					    </div>
+					</div>
+					<div class="sbox-bottom"></div>
+				    </div>
+				</div>
+				{else}
+				<div {if $smarty.get.id eq 40 || $smarty.get.id eq 41 ||  $smarty.get.id eq 42 || $smarty.get.id eq 48 || $smarty.get.id eq 55 || $smarty.get.id eq 56 || $smarty.get.id eq 57}class="has-dashboard"{/if} id="sidebar">
+				    <div class="sbox-white">
+					<div class="sbox-top"></div>
+					<div class="sbox-content">
+					    <div class="side-tip-help">
+						<p>
+						    <a href="help.php?id=67"><img src="images/faq-how-it-works1.gif"></a>
+						    <span>A 每天限时推出精品消费！</span>
+						</p>
+						<p>
+						    <a href="help.php?id=67"><img src="images/faq-how-it-works2.gif"></a>
+						    <span>B 凑够一定人数就能享受无敌折扣...邀请朋友一起来买吧！</span>
+						</p>
+						<p>
+						    <a href="help.php?id=67"><img src="images/faq-how-it-works3.gif"></a>
+						    <span>C 明天再来看，又有新惊喜！</span>
+						</p>
+					    </div>
+					</div>
+					<div class="sbox-bottom"></div>
+				    </div>
+				</div>
+				{/if}
+			    </div>
+
+			</div>
+		    </div> <!-- bd end -->
+		</div> <!-- bdw end -->
+		<div id="ftw">
+		    <!-- #BeginLibraryItem "/library/group_footer.lbi" --><!-- #EndLibraryItem -->
+		</div>
+
+	    </div> <!-- doc end -->
+
+	{insert_scripts files='mt/utilities.js,mt/core.js,mt/app-deal.js,mt/container-min.js,mt/app-misc.js'}
+	    <script type="text/javascript">
+		YAHOO.util.Event.onDOMReady(function(){
+		    MT.app.Core.init();
+		});
+	    </script>
+	    <script type="text/javascript">
+		YAHOO.util.Event.onDOMReady(function(){
+		    MT.app.Deal.refresh('bjxyt', true);
+		    MT.app.Deal.toggleOtherShare(true);
+		    MT.app.Deal.removeGuide();
+		    MT.widget.selectAndCopy('share-copy-text', 'share-copy-button');
+		    if (YAHOO.env.ua.ie) {
+			MT.app.Deal.mailto('deal-buy-mailto');
+		    }
+		});
+	    </script>
+	    <script type="text/javascript">
+		YAHOO.util.Event.onDOMReady(function(){
+		    MT.app.Help.toggleList();
+		});
+	    </script>
+    </body>
+</html>

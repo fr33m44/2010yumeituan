@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>{$group_shoptitle},{$group_shopdesc}| {$city_info.city_title}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="slides.css" rel="stylesheet" type="text/css" />
+	<link href="container.css" rel="stylesheet" type="text/css" />
+	<meta name="description" content="{$city_info.city_desc}" />
+	<meta name="keywords" content="{$city_info.city_keyword}" />
+	<!-- TemplateBeginEditable name="doctitle" -->
+	<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+	{insert_scripts files='groupontime.js,jquery.min.js,dialog-min.js,slides.js,group.js'}
+    </head>
+    <body class="bg-alt ">
+	<div id="doc">
+	    <!-- #BeginLibraryItem "/library/group_header.lbi" --><!-- #EndLibraryItem -->
+	    <div id="bdw" class="bdw">
+		<div id="bd" class="cf">
+		    <div id="referrals">
+			<div class="refers" id="content">
+			    <div class="box clear">
+				<div class="box-top"></div>
+				<div class="box-content">
+				    <div class="head"><h2>邀请有奖</h2></div>
+				    <!--{if $smarty.session.user_id gt 0}-->
+				    <div class="sect">
+					<p class="intro">如果好友受邀注册并完成首次购买，系统会在24小时内为您的{$group_shopname}账户充值{$rebate}元（可直接用于支付）。没有数量限制，邀请越多，返利越多。赶快行动吧^_^<br />
+					    <span style="color:#c43131">由于技术限制，请您务必不要在同一台电脑上进行受邀请好友的注册操作，可能会邀请失败。</span>
+
+					</p>
+					<div class="share-list">
+					    <div class="blk im">
+						<div class="logo"><img src="images/logo_qq.gif"></div>
+						<div class="info">
+						    <h4>这是您的专用邀请链接，请通过 MSN 或 QQ 发送给好友：</h4>
+						    <input type="text" onfocus="this.select()" class="f-text" size="30" value="http://www.yumeituan.com/index.php?u={$uid}" id="share-copy-text">
+						    <input type="button" class="formbutton" value="复制" id="share-copy-button">
+						</div>
+					    </div>
+					    <div class="blk">
+						<div class="logo"><img src="images/logo_msn.png"></div>
+						<div class="info finder-form">
+						    <h4>您可以直接邀请MSN好友哦：</h4>
+						    <form id="finder-form" method="post" action="invite_msn.php">
+							<p><label>MSN账号</label><input type="text" value="" name="finder-login" class="f-text"></p>
+							<p><label>MSN密码</label><input type="password" autocomplete="off" name="finder-password" class="f-text"><br><span class="tip">{$group_shopname}不会记录您的密码，请放心</span></p>
+							<p class="commit"><input type="submit" value="继续" class="formbutton"></p>
+						    </form>
+						</div>
+					    </div>
+					    <div class="blk last">
+						<div class="logo"><img src="images/logo_share.gif"></div>
+						<div class="info">
+						    <h4>分享今日团购给好友，也可获{$rebate}元返利！</h4>
+						    <div class="deal-info">
+							<p class="pic"><a target="_blank" href="index.php?id={$group_buy.group_id}" ><img width="150" height="90" src="{$group_buy.group_image}"></a></p>
+							<p class="deal-title">{$group_buy.group_name}</p>
+						    </div>
+						    <div id="deal-share">
+							<div class="deal-share-links">
+							    <h4>分享到：</h4>
+							    <ul class="cf">
+								<li>
+								    <a target="_blank" href="http://www.kaixin001.com/repaste/share.php?rurl={$weburl}{$group_buy.url}&amp;rtitle={$group_shopname}&amp;rcontent=我向朋友们推荐{$group_shopname}今日团购：{$group_buy.group_name}" class="kaixin" galabel="default">开心</a>
+								</li>
+								<li>
+								    <a target="_blank" href="http://share.renren.com/share/buttonshare.do?link={$weburl}{$group_buy.url}&amp;title=我向朋友们推荐{$group_shopname}今日团购：{$group_buy.group_name}" class="renren" galabel="default">人人</a>
+								</li>
+								<li>
+								    <a target="_blank" href="http://www.douban.com/recommend/?url={$weburl}{$group_buy.url}&amp;title=我向朋友们推荐{$group_shopname}今日团购：{$group_buy.group_name}" class="douban" galabel="default">豆瓣</a>
+								</li>
+								<li>
+								    <a target="_blank" href="http://v.t.sina.com.cn/share/share.php?url={$weburl}{$group_buy.url}&amp;title=我向朋友们推荐{$group_shopname}今日团购：{$group_buy.group_name}&pic={$group_buy.group_image_urlencoded}" class="sina" galabel="default">新浪微博</a>
+								</li>
+								<li>
+								    <a id="deal-buy-mailto" href="mailto:?subject=%D3%D0%D0%CB%C8%A4%C3%B4%A3%BA{$group_buy.group_name_urlencoded}&body=%BD%F1%CC%EC{$city_info.city_name_urlencoded}%B5%C4%CD%C5%B9%BA%CA%C7%A3%BA{$group_buy.group_name_urlencoded}%0D%0A%CE%D2%CF%EB%C4%FA%BB%E1%B8%D0%D0%CB%C8%A4%B5%C4%A3%BA%0D%0A{$group_buy.url_urlencoded}" class="email" galabel="default" name="deal-buy-mailto">邮件</a>
+								</li>
+							    </ul>
+							</div>
+						    </div>
+						</div>
+					    </div>
+					    <div class="clear"></div>
+					</div>
+				    </div>
+				    <!--{else}-->
+				    <div class="sect">
+					<p class="intro">如果好友受邀注册并完成首次购买，系统会在24小时内为您的{$group_shopname}账户充值{$rebate}元（可直接用于支付）。没有数量限制，邀请越多，返利越多。赶快行动吧^_^<br /><br />
+					    <span style="color:#c43131">由于技术限制，请您务必不要在同一台电脑上进行受邀请好友的注册操作，可能会邀请失败。</span>
+
+					</p>
+					<p class="intro-pic"><img width="658" height="244" src="images/referrals-nologin.jpg"></p>
+					<p class="login"><a href="login.php"><img src="images/referrals-nologin-btn.png"></a></p>
+					<p class="login">还没有{$group_shopname}账户？<a href="signup.php">立即注册</a></p>
+				    </div>
+				    <!--{/if}-->
+				</div>
+				<div class="box-bottom"></div>
+			    </div>
+			</div>
+			<div id="sidebar">
+			    <div class="sbox">
+				<div class="sbox-top"></div>
+				<div class="sbox-content">
+				    <div class="side-tip referrals-side">
+					<h3 class="first">在哪里可以看到我的返利？</h3>
+					<p>在<a target="_blank" href="myinvite.php">我的邀请</a>可看到您的邀请和返利记录。返利金额不返现，可在下次团购时用于支付。</p>
+					<h3>哪些情况不能获得邀请返利？</h3>
+					<ul class="invalid">
+					    <li>好友点击邀请链接后超过72小时才注册并购买</li>
+					    <li>好友购买之前点击了其他人的邀请链接</li>
+					    <li>同一个手机号或送货地址多次使用时不返利</li>
+					    <li>单一团购金额低于10元或另有说明的</li>
+					    <li>由于最终团购人数没有达到人数下限，本次团购取消</li>
+					</ul>
+					<h3>自己邀请自己也能获得返利吗？</h3>
+					<p>不可以。我们会人工核查，对于查实的作弊行为，扣除一切返利。</p>
+				    </div>
+				</div>
+				<div class="sbox-bottom"></div>
+			    </div>
+			</div>
+		    </div>
+		</div> <!-- bd end -->
+	    </div> <!-- bdw end -->
+
+	    <div id="ftw">
+		<!-- #BeginLibraryItem "/library/group_footer.lbi" --><!-- #EndLibraryItem -->
+	    </div>
+
+	</div> <!-- doc end -->
+
+	{insert_scripts files='mt/utilities.js,mt/core.js,mt/app-deal.js,mt/container-min.js,mt/app-misc.js'}
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Core.init();
+	    });
+	</script>
+	<script type="text/javascript" charset="utf-8">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.widget.selectAndCopy('share-copy-text', 'share-copy-button');
+		MT.app.Finder.submitProcess();
+	    });
+	</script>
+
+    </body>
+</html>

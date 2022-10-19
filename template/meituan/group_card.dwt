@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>{$city_info.city_title}</title>
+	<meta name="description" content="{$city_info.city_desc}" />
+	<meta name="keywords" content="{$city_info.city_keyword}" />
+	<style type="text/css">
+	    body,table,tr,td,input,p,form{padding:0;margin:0;}
+	    table{width:100%;border-collapse:collapse;}
+	    td{padding:1px;}
+	    p{padding:5px 0 10px;}
+	    .txt{height:24px;line-height:24px;padding:0 2px;border:1px solid #89B4D6;}
+	    input.error{background:#eee;}
+	    label.error{width:0;height:0;overflow:hidden;position:absolute;}
+	</style>
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.validate.pack.js"></script>
+	<script type="text/javascript">
+	    <!--{if $suppliers_id gt '0'}-->
+	    function set_card(){
+		$("#cardForm").validate({
+		    rules:{
+			card_sn:{required:true},
+			card_pass:{required:true}
+		    }});
+		var card_sn = $("#card_sn").attr('value');
+		var card_pass = $("#card_pass").attr('value');
+		if (card_sn != '' && card_pass != '')
+		{
+		    $.ajax({
+			url:"merchant.php?act=set_coupons",
+			type:"POST",
+			data:'card_sn=' + card_sn + '&card_pass=' + card_pass,
+			cache: false,
+			dataType: 'json',
+			success:setcardResponse
+		    });
+		}
+		//return false;
+	    }
+	    function setcardResponse(result)
+	    {
+		alert(result.msg);
+		//return false;
+		//window.location.href = 'merchant.php?act=get_coupons'
+		
+	    }
+	    <!--{else}-->
+	    $(function(){
+		$("#loginForm").validate({
+		    rules:{
+			username:{required:true},
+			password:{required:true}
+		    }
+		});
+	    })
+	    <!--{/if}-->
+
+	</script>
+    </head>
+    <body>
+	<div id="pmessbox">
+	    <!--{if $suppliers_id gt '0'}-->
+	    <div style="text-align:center;line-height:2;"><p>请核对或填写您的的团购卷号和密码？</p>
+		<form name="cardForm" action="" method="POST" id="cardForm" onsubmit="set_card();return false;">
+		    <table>
+			<tr><td align="right">卷号：</td><td align="left" width="200"><input type="text" value="" class="txt" name="card_sn" id="card_sn"/></td></tr>
+			<tr><td align="right">密码：</td><td align="left"><input type="text" value="" class="txt" name="card_pass" id="card_pass"/></td></tr>
+			<tr><td></td><td align="left"><input type="submit" id="tj" value="消费验证" style="height:30px;padding:0 20px;background:#63C5C8;font-weight:bold;font-size:14px;color:#fff;cursor:pointer;border-color:#82D0D4 #4D989B #54A3A7 #92D6D9;border-style:solid;border-width:2px;" /></td></tr>
+		    </table>
+		</form>
+	    </div>
+	    <!--{else}-->
+	    <div style="text-align:center;line-height:2;"><p>请先您先登录,再验证团购卷号和密码</p>
+		<table>
+		    <form name="loginForm" action="merchant.php" method="POST" id="loginForm">
+			<tr><td align="right">商户名：</td><td align="left" width="200"><input type="text" value="" class="txt" name="username" id="username"/></td></tr>
+			<tr><td align="right">密码：</td><td align="left"><input type="password" value="" class="txt" name="password" id="password"/></td></tr>
+			<tr><td></td><td align="left"><input type="hidden" value="act_login" name="act" />
+				<input type="hidden" value="merchant.php?act=get_coupons" name="back_act" />
+				<input type="submit" id="tj" value="登&nbsp;&nbsp;录" style="height:30px;padding:0 20px;background:#7DB933;font-weight:bold;font-size:14px;color:#fff;cursor:pointer;border:1px solid #390;border-top:1px solid #3C3;border-left:1px solid #3C3;" /></td></tr>
+		    </form>
+		</table>
+	    </div>
+	    <!--{/if}-->
+	</div>
+    </body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>{$group_shoptitle},{$group_shopdesc}| {$city_info.city_title}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="slides.css" rel="stylesheet" type="text/css" />
+	<link href="container.css" rel="stylesheet" type="text/css" />
+	<meta name="description" content="{$city_info.city_desc}" />
+	<meta name="keywords" content="{$city_info.city_keyword}" />
+	<!-- TemplateBeginEditable name="doctitle" -->
+	<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+	{insert_scripts files='groupontime.js,jquery.min.js,dialog-min.js,slides.js,group.js'}
+    </head>
+    <body class="yui-skin-sam">
+	<div id="doc">
+	    <!-- #BeginLibraryItem "/library/group_header.lbi" --><!-- #EndLibraryItem -->
+	    <div id="bdw" class="bdw">
+		<div id="bd" class="cf">
+		    <div id="content">
+			<div class="box" id="deal-buy">
+			    <div class="box-top"></div>
+			    <div class="box-content">
+				<div class="head"><h2>您的订单</h2></div>
+				<div id="order-check" class="sect">
+				    <table class="order-table">
+					<tbody><tr>
+						<th class="deal-buy-desc">项目</th>
+						<th class="deal-buy-quantity">数量</th>
+						<th class="deal-buy-multi"></th>
+						<th class="deal-buy-price">价格</th>
+						<th class="deal-buy-equal"></th>
+						<th class="deal-buy-total">总价</th>
+					    </tr>
+					    <tr>
+						<td class="deal-buy-desc"><a href="index.php?id={$group_arr.goods_id}">{$group_arr.goods_name}</a></td>
+						<td class="deal-buy-quantity">{$group_arr.goods_number}</td>
+						<td class="deal-buy-multi">x</td>
+						<td id="deal-buy-price" class="deal-buy-price"><span class="money">¥</span>{$group_arr.goods_price}</td>
+						<td class="deal-buy-equal">=</td>
+						<td id="deal-buy-total" class="deal-buy-total"><span class="money">¥</span>{$group_arr.subtotal}</td>
+					    </tr>
+					    <!--{if $goods_type eq '2'}-->
+					    <tr id="delivery-fee-row">
+						<td class="deal-buy-desc">运费</td>
+						<td class="deal-buy-quantity"></td>
+						<td class="deal-buy-multi"></td>
+						<td class="deal-buy-price"></td>
+						<td class="deal-buy-equal"></td>
+						<td class="deal-buy-total"><span class="money">¥</span><span id="deal-buy-delivery-fee">{$group_arr.shipping_fee}</span></td>
+					    </tr>
+					    <!--{/if}-->
+					    <tr class="order-total">
+						<td class="deal-buy-desc"><strong>应付总额</strong></td>
+						<td class="deal-buy-quantity"></td>
+						<td class="deal-buy-multi"></td>
+						<td class="deal-buy-price"></td>
+						<td class="deal-buy-equal">=</td>
+						<td class="deal-buy-total"><span class="money">¥</span>{$group_arr.all_amount}</td>
+					    </tr>
+					</tbody>
+				    </table>
+				    <!--{if $goods_type eq '1'}-->
+				    <div class="enter-mobile-detail">
+					<h3>您的手机</h3>
+					<p>团购成功后，{$group_cardname}密码将发送到手机：<strong>{$orders.mobile}</strong>，凭{$group_cardname}密码去商家消费。</p>
+				    </div>
+				    <!--{else}-->
+				    <div class="delivery-info">
+					<h3 class="address">配送信息</h3>
+					<p class="address detail"><span>收货人姓名：{$orders.consignee}，{$orders.province}{$orders.city}{$orders.district}{$orders.address}，{$orders.zipcode}，电话：{$orders.mobile}， 备注：{$orders.postscript}</span></p>
+				    </div>
+				    <!--{/if}-->
+				    <div class="paytype">
+					<div class="order-check-form">
+					    <div class="order-pay-choose">
+						<h3>请选择支付方式</h3>
+						<!--{if $group_arr.pay_money gt '0'}-->
+						<p>账户余额：<strong><span class="money">¥</span>{$group_arr.user_money}</strong> 您的余额不够完成本次付款，还需支付 <strong><span class="money">¥</span>{$group_arr.pay_money}</strong>：</p>
+						<!--{else}-->
+						<p>账户余额：<strong><span class="money">¥</span>{$group_arr.user_money}</strong>
+						<form id="order-pay-form-credit" action="buy.php?a=pay" method="post">
+						    <input type="hidden" name="payment" value="-1" />
+						    <input type="hidden" name="act" value="insert" />
+						    <input type="hidden" name="orderid" value="{$group_arr.order_id}" />
+						</form>
+						</p>
+						<!--{/if}-->
+					    </div>
+					    <!--{if $group_arr.pay_money gt '0'}-->
+					    <ul class="paytype-list paytype-list-credit" id="order-check-typelist">
+						<li class="item">
+						    <input type="radio" checked="checked" value="alipay" name="paytype" id="check-alipay" class="input">
+						    <label class="alipay label" for="check-alipay">推荐淘宝用户使用</label>
+						    {if $show_checkordertip}
+						    <p class="order-check-tip" style="display: none;">提示：部分信用卡无法一次支付500以上的金额，建议您<a href="account.php?act=charge">分次充值到{$group_shopname}账户</a>，再用余额付款。</p>
+						    {/if}
+						    <form stype="alipay" sid="{$order_id}" target="_blank" action="https://www.alipay.com/cooperate/gateway.do?_input_charset=utf-8" method="post" id="order-pay-form-alipay">
+						    {$alipay_online}
+						    </form>
+						</li>
+						<li class="item">
+						    <input type="radio" value="tenpay" name="paytype" id="check-tenpay" class="input">
+						    <label class="tenpay label" for="check-tenpay">无需注册，支持国内各大银行支付</label>
+						    {if $show_checkordertip}
+						    <p class="order-check-tip" style="display: none;">提示：部分信用卡无法一次支付500以上的金额，建议您<a href="account.php?act=charge">分次充值到{$group_shopname}账户</a>，再用余额付款。</p>
+						    {/if}
+						    <form stype="tenpay" sid="{$order_id}" target="_blank" action="https://www.tenpay.com/cgi-bin/v1.0/pay_gate.cgi" method="post" id="order-pay-form-tenpay">
+							{$tenpay_online}
+						    </form>
+						</li>
+						<li class="item">
+						    <form stype="alipay-bank" sid="{$order_id}" target="_blank" action="payredirect.php" method="post" id="order-pay-form-alipay-bank">
+							{$alipay_online}
+							<table class="banktable" id="order-check-banktable">
+							    <tbody>
+								<tr>
+								    <td><a class="bank-logo cmb" href="javascript:void(0)" title="招商银行"><input type="radio" name="defaultbank" value="CMB"><em>招商银行</em></a></td>
+								    <td><a class="bank-logo icbc" href="javascript:void(0)" title="中国工商银行"><input type="radio" name="defaultbank" value="ICBCB2C"><em>中国工商银行</em></a></td>
+								    <td><a class="bank-logo ccb" href="javascript:void(0)" title="中国建设银行"><input type="radio" name="defaultbank" value="CCB"><em>中国建设银行</em></a></td>
+								</tr>
+								<tr><td><a class="bank-logo boc" href="javascript:void(0)" title="交通银行"><input type="radio" name="defaultbank" value="COMM"><em>交通银行</em></a></td>
+								    <td><a class="bank-logo bofc" href="javascript:void(0)" title="中国银行"><input type="radio" name="defaultbank" value="BOCB2C"><em>中国银行</em></a></td>
+								    <td><a class="bank-logo spdb" href="javascript:void(0)" title="上海浦东发展银行"><input type="radio" name="defaultbank" value="SPDB"><em>上海浦东发展银行</em></a></td>
+								</tr>
+								<tr><td><a class="bank-logo pingan" href="javascript:void(0)" title="平安银行"><input type="radio" name="defaultbank" value="SPABANK"><em>平安银行</em></a></td>
+								    <td><a class="bank-logo cmbc" href="javascript:void(0)" title="中国民生银行"><input type="radio" name="defaultbank" value="CMBC"><em>中国民生银行</em></a></td>
+								    <td><a class="bank-logo abc" href="javascript:void(0)" title="中国农业银行"><input type="radio" name="defaultbank" value="ABC"><em>中国农业银行</em></a></td>
+								</tr>
+								<tr><td><a class="bank-logo cebb" href="javascript:void(0)" title="光大银行"><input type="radio" name="defaultbank" value="CEBBANK"><em>光大银行</em></a></td>
+								    <td><a class="bank-logo cib" href="javascript:void(0)" title="兴业银行"><input type="radio" name="defaultbank" value="CIB"><em>兴业银行</em></a></td>
+								    <td><a class="bank-logo zxyh" href="javascript:void(0)" title="中信银行"><input type="radio" name="defaultbank" value="CITIC"><em>中信银行</em></a></td>
+								</tr>
+								<tr><td><a class="bank-logo gdb" href="javascript:void(0)" title="广东发展银行"><input type="radio" name="defaultbank" value="GDB"><em>广东发展银行</em></a></td>
+								    <td><a class="bank-logo sdb" href="javascript:void(0)" title="深圳发展银行"><input type="radio" name="defaultbank" value="SDB"><em>深圳发展银行</em></a></td>
+								    <td><span>&nbsp;</span></td>
+								</tr>
+							    </tbody>
+							</table>
+						    </form>
+						</li>
+					    </ul>
+					    <div class="clear"></div>
+					    <!--{/if}-->
+                                            <p class="check-act">
+						<input type="button" class="formbutton" value="确认订单，付款" id="order-pay-button"> <a style="margin-left: 1em;" href="buy.php?a=cart&id={$group_arr.goods_id}">返回修改订单</a>
+					    </p>
+					</div>
+				    </div>
+				</div>
+			    </div>
+			    <div class="box-bottom"></div>
+			</div>
+		    </div>
+		    <div id="sidebar">
+		    </div>
+		</div> <!-- bd end -->
+	    </div> <!-- bdw end -->
+
+	    <div id="ftw">
+		<!-- #BeginLibraryItem "/library/group_footer.lbi" --><!-- #EndLibraryItem -->
+	    </div>
+
+	</div> <!-- doc end -->
+	{insert_scripts files='mt/utilities.js,mt/core.js,mt/app-deal.js,mt/container-min.js,mt/app-misc.js,mt/app-order.js'}
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Core.init();
+	    });
+	</script>
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Order.check();
+	    });
+	</script>
+
+    </body>
+</html>

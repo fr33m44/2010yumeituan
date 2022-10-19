@@ -1,0 +1,4 @@
+<ul>
+    <li <!--{if $menu eq 'ask' or $menu eq 'myask'}--> class="current"<!--{/if}-->><a href="{$ask_url}">{$group_shopname}答疑</a><span></span></li>
+    <li <!--{if $menu eq 'exchange'}--> class="current"<!--{/if}-->><a href="{$ask_url_exchange}">求购转让</a><span></span></li>
+</ul>

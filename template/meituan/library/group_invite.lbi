@@ -1,0 +1,11 @@
+<div class="sbox side-invite-tip">
+    <div class="sbox-top"></div>
+    <div class="sbox-content">
+	<div class="tip">
+	    <h2>邀请有奖</h2>
+	    <p class="text"><a href="invite.php" class="icon"></a><a href="invite.php"  class="lnk">每邀请一位好友首次购买，您将获 <strong>{$rebate}</strong> 元返利</a></p>
+	    <p class="click"><a href="invite.php">» 点击获取您的专用邀请链接</a></p>
+	</div>
+    </div>
+    <div class="sbox-bottom"></div>
+</div>

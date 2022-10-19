@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>{$group_shoptitle},{$group_shopdesc}| {$city_info.city_title}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="slides.css" rel="stylesheet" type="text/css" />
+	<link href="container.css" rel="stylesheet" type="text/css" />
+	<meta name="description" content="{$city_info.city_desc}" />
+	<meta name="keywords" content="{$city_info.city_keyword}" />
+	<!-- TemplateBeginEditable name="doctitle" -->
+	<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+	{insert_scripts files='groupontime.js,jquery.min.js,dialog-min.js,slides.js,group.js'}
+    </head>
+    <body class="bg-alt ">
+	<div id="doc">
+	    <!-- #BeginLibraryItem "/library/group_header.lbi" --><!-- #EndLibraryItem -->
+	    <!--{if $msg}-->
+	    <div id="sysmsg-{$msg.type}" class="sysmsgw"><div class="sysmsg">
+		    <p>{$msg.content}</p>
+		    <span class="close">关闭</span>
+		</div>
+	    </div>
+	    <!--{/if}-->
+	    <div id="bdw" class="bdw">
+		<div id="bd" class="cf">
+		    <!--{if $show_tips neq '0'} -->
+
+		    <!--{/if}-->
+		    <div id="feedback">
+			<div class="seller" id="content">
+			    <div class="box">
+				<div class="box-top"></div>
+				<div class="box-content">
+				    <div class="head"><h2>{$title}</h2></div>
+				    <div class="sect">
+					<p class="notice">{$desc}</p>
+					<form id="feedback-user-form" method="post" action="feedback.php">
+					    <!--{if $smarty.session.user_id gt 0}-->
+					    <div class="field fullname">
+						<label for="feedback-fullname">您的称呼</label>
+						<input type="text" size="30" name="name" id="feedback-fullname" class="f-text" value="{$profile.user_name}" />
+					    </div>
+					    <div class="field contact">
+						<label for="feedback-contact">联系方式</label>
+						<input type="text" size="30" name="contact" id="feedback-contact" class="f-text" value="{$profile.email}" />                             <span class="hint">请留下您的手机、QQ号或邮箱，方便联系</span></div>
+					    <div class="field suggest">
+						<label for="feedback-suggest">内容</label>
+						<textarea cols="30" rows="5" name="content" id="feedback-suggest" class="f-textarea">{$info.content}</textarea>
+					    </div>
+					    <!--{else}-->
+					    <div class="field fullname">
+						<label for="feedback-fullname">您的称呼</label>
+						<input type="text" size="30" name="name" id="feedback-fullname" class="f-text" value="{$info.name}" />
+					    </div>
+					    <div class="field contact">
+						<label for="feedback-contact">联系方式</label>
+						<input type="text" size="30" name="contact" id="feedback-contact" class="f-text" value="{$info.contact}" />                             <span class="hint">请留下您的手机、QQ号或邮箱，方便联系</span></div>
+					    <div class="field suggest">
+						<label for="feedback-suggest">内容</label>
+						<textarea cols="30" rows="5" name="content" id="feedback-suggest" class="f-textarea">{$info.content}</textarea>
+					    </div>
+					    <!--{/if}-->
+					    <div class="clear">&nbsp;</div>
+					    <div class="act">
+						<input type="hidden" name="type" value="{$smarty.get.t}" />
+						<input type="hidden" name="act" value="act_save" />
+						<input type="submit" value="提交" name="commit" id="feedback-submit" class="formbutton" />
+					    </div>
+					</form>
+				    </div>
+				</div>
+				<div class="box-bottom"></div>
+			    </div>
+			</div>
+		    </div>
+		</div> <!-- bd end -->
+	    </div> <!-- bdw end -->
+
+	    <div id="ftw">
+		<!-- #BeginLibraryItem "/library/group_footer.lbi" --><!-- #EndLibraryItem -->
+	    </div>
+
+	</div> <!-- doc end -->
+
+	{insert_scripts files='mt/utilities.js,mt/core.js,mt/app-deal.js,mt/container-min.js,mt/app-misc.js'}
+	<script type="text/javascript">
+	    slides();
+	</script>
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Core.init();
+	    });
+	</script>
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Deal.refresh('bjxyt', true);
+		MT.app.Deal.toggleOtherShare(true);
+		MT.app.Deal.removeGuide();
+		MT.widget.selectAndCopy('share-copy-text', 'share-copy-button');
+		if (YAHOO.env.ua.ie) {
+		    MT.app.Deal.mailto('deal-buy-mailto');
+		}
+	    });
+	</script>
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Help.toggleList();
+	    });
+	</script>
+    </body>
+</html>

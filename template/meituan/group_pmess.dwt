@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>补发短信</title>
+<style type="text/css">
+body,input,p,form{padding:0;margin:0;}
+.txt{height:24px;line-height:24px;padding:0 2px;border:1px solid #89B4D6;}
+.but{height:30px;padding:0 20px;background:#63C5C8;font-weight:bold;font-size:14px;color:#fff;cursor:pointer;border-color:#82D0D4 #4D989B #54A3A7 #92D6D9;border-style:solid;border-width:2px;}
+input.error{background:#eee;}
+label.error{width:0;height:0;overflow:hidden;position:absolute;}
+</style>
+</head>
+<body style="padding:0;margin:0;">
+<div id="pmessbox"><div style="text-align:center;line-height:2;padding-top:15px;"><p style="padding:0;margin:0;">请核对或填写您的手机号是否正确？<br><span style="color:#999;font-size:12px;">短信发送可能出现延迟，请耐心等待几分钟！</span></p>
+<form name="" action="coupons.php" method="GET" target="_blank">
+<input type="hidden" name="act" value="send_sms" />
+<input type="text" value="{$mobile}" style="margin:5px 0 10px;width:240px;" class="txt" name="mobile"/>
+<input type="hidden" name="card_id" value="{$card_id}" />
+<input type="submit" id="tj" class="but" value="确认无误，发送" />
+</form>
+</div></div>
+</body>
+</html>

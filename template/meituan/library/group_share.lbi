@@ -1,0 +1,127 @@
+<div id="deal-share">
+    <div class="deal-share-top">
+	<div class="deal-share-links">
+	    <h4>分享到：</h4>
+	    <ul class="cf">
+		<li>
+		    <a id="deal-share-im" href="javascript:void(0);" class="im" name="deal-share-im">MSN/QQ</a>
+		</li>
+		<li>
+		    <a target="_blank" href="http://www.kaixin001.com/repaste/share.php?rurl={$weburl}{$group_buy.url}&amp;rtitle={$group_shopname}&amp;rcontent=我向朋友们推荐{$group_shopname}今日团购：{$group_buy.group_name}" class="kaixin" galabel="default">开心</a>
+		</li>
+		<li>
+		    <a target="_blank" href="http://share.renren.com/share/buttonshare.do?link={$weburl}{$group_buy.url}&amp;title=我向朋友们推荐{$group_shopname}今日团购：{$group_buy.group_name}" class="renren" galabel="default">人人</a>
+		</li>
+		<li>
+		    <a target="_blank" href="http://www.douban.com/recommend/?url={$weburl}{$group_buy.url}&amp;title=我向朋友们推荐{$group_shopname}今日团购：{$group_buy.group_name}" class="douban" galabel="default">豆瓣</a>
+		</li>
+		<li>
+		    <a target="_blank" href="http://v.t.sina.com.cn/share/share.php?url={$weburl}{$group_buy.url}&amp;title=我向朋友们推荐{$group_shopname}今日团购：{$group_buy.group_name}&pic={$group_buy.group_image_urlencoded}" class="sina" galabel="default">新浪微博</a>
+		</li>
+		<li>
+		    <a id="deal-buy-mailto" href="mailto:?subject=%D3%D0%D0%CB%C8%A4%C3%B4%A3%BA{$group_buy.group_name_urlencoded}&body=%BD%F1%CC%EC{$city_info.city_name_urlencoded}%B5%C4%CD%C5%B9%BA%CA%C7%A3%BA{$group_buy.group_name_urlencoded}%0D%0A%CE%D2%CF%EB%C4%FA%BB%E1%B8%D0%D0%CB%C8%A4%B5%C4%A3%BA%0D%0A{$group_buy.url_urlencoded}" class="email" galabel="default" name="deal-buy-mailto">邮件</a>
+		</li>
+	    </ul>
+	</div>
+    </div>
+    <div class="deal-share-fix"></div>
+
+
+    <div class="share-left">
+    </div>
+    <div id="bar"><div id="barword"><nobr>{$group_notice}</nobr></div></div>
+    <div class="share-right">
+    </div>
+
+    <script type="text/javascript">
+	var scrollingBox;
+	var scrollingInterval;
+	var delay=100;
+	var dragging=false;
+	var test;
+	var mouseY;
+	var mouseX;
+	window.onload = function(){
+	    test = document.getElementById("barword");
+	    test.onmousedown = down;
+	    test.onmousemove = move;
+	    test.onmouseup = up;
+	    
+	    //test.style.position = "relative";
+	    //test.style.top = "0px";
+	    //test.style.left = "0px";
+	}
+	function disableSelection(target){
+	    target = document.getElementById(target);
+	    if (typeof target.onselectstart!="undefined") //IE route
+		target.onselectstart=function(){return false}
+	    else if (typeof target.style.MozUserSelect!="undefined") //Firefox route
+		target.style.MozUserSelect="none"
+	    else //All other route (ie: Opera)
+		target.onmousedown=function(){return false}
+	    target.style.cursor = "default"
+	}
+	function down(event)
+	{
+	    event = event || window.event;
+	    dragging = true;
+	    mouseX = parseInt(event.clientX);
+	    mouseY = parseInt(event.clientY);
+	    test.style.cursor="w-resize";
+	    //objY = parseInt(test.style.top);
+	    //objX = parseInt(test.style.left);
+	}
+	function move(event){
+	    event = event || window.event;
+	    if(dragging == true){
+		var x,y;
+		//y = event.clientY - mouseY + objY;
+		//x = event.clientX ;
+		//test.style.top = y + "px";
+		//test.style.left = x + "px";
+		test.scrollLeft=3*(event.clientX-713);  //0~272
+		//console.log(test.scrollLeft);//713~839
+		
+	    }
+	}
+	function up(){
+	    dragging = false;
+	}
+
+	//1.初始化滚动新闻
+	function initScrolling(obj){
+	    scrollingBox = document.getElementById(obj);
+	    //scrollingBox.style.width = "20px";
+	    //scrollingBox.style.overflow = "hidden";
+	    scrollingInterval = setInterval("scrolling()",delay);
+	    scrollingBox.onmouseover=function(){
+		clearInterval(scrollingInterval);
+	    };
+	    scrollingBox.onmouseout=function(){
+		scrollingInterval = setInterval("scrolling()",delay);
+	    }
+	}
+	//3.滚动效果
+	function scrolling(){
+	    //开始滚动
+	    scrollingBox.scrollLeft++;
+	    var origin = scrollingBox.scrollLeft++;
+	    //console.log(test.scrollLeft);
+	    if(origin == scrollingBox.scrollLeft){
+		//延时固定时间后返回顶部
+		setTimeout("scrollingBox.scrollLeft=0",1000)
+	    }
+	}
+	initScrolling("barword");
+	disableSelection("barword");
+    </script>
+    <div id="deal-share-im-c">
+	<div class="deal-share-im-b">
+	    <h3>把下面的内容通过 MSN 或 QQ 发送给好友：</h3>
+	    <p>
+		<input id="share-copy-text" value="{$weburl}index.php?u={$uid}" size="30" class="f-input" type="text">
+		<input id="share-copy-button" value="复制" class="formbutton" type="button">
+	    </p>
+	</div>
+    </div>
+</div>

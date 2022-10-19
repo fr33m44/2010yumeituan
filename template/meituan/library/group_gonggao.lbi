@@ -1,0 +1,14 @@
+<div class="sbox side-notice-tip">
+    <div class="sbox-top"></div>
+    <div class="sbox-content">
+	<div class="tip">
+	    <h2>最新通知</h2>
+	    <div class="text">
+		<ul class="list">
+		   {$city_info.city_notice}
+		</ul>
+	    </div>
+	</div>
+    </div>
+    <div class="sbox-bottom"></div>
+</div>

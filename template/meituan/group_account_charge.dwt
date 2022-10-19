@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>{$group_shoptitle},{$group_shopdesc}| {$city_info.city_title}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="slides.css" rel="stylesheet" type="text/css" />
+	<link href="container.css" rel="stylesheet" type="text/css" />
+	<meta name="description" content="{$city_info.city_desc}" />
+	<meta name="keywords" content="{$city_info.city_keyword}" />
+	<!-- TemplateBeginEditable name="doctitle" -->
+	<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+	{insert_scripts files='groupontime.js,jquery.min.js,dialog-min.js,slides.js,group.js'}
+    </head>
+    <body class="yui-skin-sam">
+	<div id="doc">
+	    <!-- #BeginLibraryItem "/library/group_header.lbi" --><!-- #EndLibraryItem -->
+	    <!--{if $msg}-->
+	    <div id="sysmsg-{$msg.type}" class="sysmsgw"><div class="sysmsg">
+		    <p>{$msg.content}</p>
+		    <span class="close">关闭</span>
+		</div>
+	    </div>
+	    <!--{/if}-->
+	    <div id="bdw" class="bdw">
+		<div id="bd" class="cf">
+		    <div id="account-charge">
+			<div id="content">
+			    <div class="box">
+				<div class="box-top"></div>
+				<div class="box-content">
+				    <div class="head"><h2>充值</h2></div>
+				    <div class="sect">
+					<div class="charge">
+					    <form method="post" action="account.php?act=chargepay" id="account-charge-form">
+						<p class="money">请输入充值金额：</p>
+						<p class="number">
+						    <input type="text" name="amount" class="f-text" maxlength="6"> 元
+						</p>
+						<p style="visibility: hidden;" class="tip" id="account-charge-tip"></p>
+						
+						<p class="commit">
+						    <input type="submit" class="formbutton" value="确定，去付款">
+						</p>
+					    </form>
+					</div>
+
+				    </div>
+				</div>
+				<div class="box-bottom"></div>
+			    </div>
+			</div>
+		    </div>
+		</div> <!-- bd end -->
+	    </div> <!-- bdw end -->
+
+	    <div id="ftw">
+		<!-- #BeginLibraryItem "/library/group_footer.lbi" --><!-- #EndLibraryItem -->
+	    </div>
+
+	</div> <!-- doc end -->
+
+	{insert_scripts files='mt/utilities.js,mt/core.js,mt/app-order.js,mt/app-deal.js,mt/container-min.js,mt/app-misc.js'}
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Core.init();
+	    });
+	</script>
+	<script type="text/javascript" charset="utf-8">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Account.charge();
+	    });
+	</script>
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Order.check();
+	    });
+	</script>
+
+    </body>
+</html>

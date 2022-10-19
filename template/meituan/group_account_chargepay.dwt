@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>{$group_shoptitle},{$group_shopdesc}| {$city_info.city_title}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="slides.css" rel="stylesheet" type="text/css" />
+	<link href="container.css" rel="stylesheet" type="text/css" />
+	<meta name="description" content="{$city_info.city_desc}" />
+	<meta name="keywords" content="{$city_info.city_keyword}" />
+	<!-- TemplateBeginEditable name="doctitle" -->
+	<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+	{insert_scripts files='groupontime.js,jquery.min.js,dialog-min.js,slides.js,group.js'}
+    </head>
+    <body class="yui-skin-sam">
+	<div id="doc">
+	    <!-- #BeginLibraryItem "/library/group_header.lbi" --><!-- #EndLibraryItem -->
+	    <!--{if $msg}-->
+	    <div id="sysmsg-{$msg.type}" class="sysmsgw"><div class="sysmsg">
+		    <p>{$msg.content}</p>
+		    <span class="close">关闭</span>
+		</div>
+	    </div>
+	    <!--{/if}-->
+	    <div id="bdw" class="bdw">
+		<div id="bd" class="cf">
+		    <div id="account-charge">
+			<div id="content">
+			    <div class="box">
+				<div class="box-top"></div>
+				<div class="box-content">
+				    <div class="head">
+					<h2>充值金额：<strong class="total" id="total-money">{$amount_formated}</strong> 元</h2>
+				    </div>
+				    <div class="sect">
+					<div class="choose">
+					    <p class="choose-pay-type">请选择支付方式：</p>
+					    <ul class="paytype-list paytype-list-credit" id="order-check-typelist">
+						<li class="item">
+						    <input type="radio" checked="checked" value="alipay" name="paytype" id="check-alipay" class="input">
+						    <label class="alipay label" for="check-alipay">推荐淘宝用户使用</label>
+						    <form stype="alipay" sid="0" target="_blank" action="https://www.alipay.com/cooperate/gateway.do?_input_charset=utf-8" method="post" id="order-pay-form-alipay">
+							    {$alipay_online}
+						    </form>
+						</li>
+						<li class="item">
+						    <input type="radio" value="tenpay" name="paytype" id="check-tenpay" class="input">
+						    <label class="tenpay label" for="check-tenpay">无需注册，支持国内各大银行支付</label>
+						    <form stype="tenpay" sid="0" target="_blank" action="https://www.tenpay.com/cgi-bin/v1.0/pay_gate.cgi" method="post" id="order-pay-form-tenpay">
+							{$tenpay_online}
+						    </form>
+						</li>
+						<li class="item">
+						    <form stype="alipay-bank" sid="0" target="_blank" action="payredirect.php" method="post" id="order-pay-form-alipay-bank">
+							{$alipay_online}
+							<table class="banktable" id="order-check-banktable">
+							    <tbody>
+								<tr>
+								    <td><a class="bank-logo cmb" href="javascript:void(0)" title="招商银行"><input type="radio" name="defaultbank" value="CMB"><em>招商银行</em></a></td>
+								    <td><a class="bank-logo icbc" href="javascript:void(0)" title="中国工商银行"><input type="radio" name="defaultbank" value="ICBCB2C"><em>中国工商银行</em></a></td>
+								    <td><a class="bank-logo ccb" href="javascript:void(0)" title="中国建设银行"><input type="radio" name="defaultbank" value="CCB"><em>中国建设银行</em></a></td>
+								</tr>
+								<tr><td><a class="bank-logo boc" href="javascript:void(0)" title="交通银行"><input type="radio" name="defaultbank" value="COMM"><em>交通银行</em></a></td>
+								    <td><a class="bank-logo bofc" href="javascript:void(0)" title="中国银行"><input type="radio" name="defaultbank" value="BOCB2C"><em>中国银行</em></a></td>
+								    <td><a class="bank-logo spdb" href="javascript:void(0)" title="上海浦东发展银行"><input type="radio" name="defaultbank" value="SPDB"><em>上海浦东发展银行</em></a></td>
+								</tr>
+								<tr><td><a class="bank-logo pingan" href="javascript:void(0)" title="平安银行"><input type="radio" name="defaultbank" value="SPABANK"><em>平安银行</em></a></td>
+								    <td><a class="bank-logo cmbc" href="javascript:void(0)" title="中国民生银行"><input type="radio" name="defaultbank" value="CMBC"><em>中国民生银行</em></a></td>
+								    <td><a class="bank-logo abc" href="javascript:void(0)" title="中国农业银行"><input type="radio" name="defaultbank" value="ABC"><em>中国农业银行</em></a></td>
+								</tr>
+								<tr><td><a class="bank-logo cebb" href="javascript:void(0)" title="光大银行"><input type="radio" name="defaultbank" value="CEBBANK"><em>光大银行</em></a></td>
+								    <td><a class="bank-logo cib" href="javascript:void(0)" title="兴业银行"><input type="radio" name="defaultbank" value="CIB"><em>兴业银行</em></a></td>
+								    <td><a class="bank-logo zxyh" href="javascript:void(0)" title="中信银行"><input type="radio" name="defaultbank" value="CITIC"><em>中信银行</em></a></td>
+								</tr>
+								<tr><td><a class="bank-logo gdb" href="javascript:void(0)" title="广东发展银行"><input type="radio" name="defaultbank" value="GDB"><em>广东发展银行</em></a></td>
+								    <td><a class="bank-logo sdb" href="javascript:void(0)" title="深圳发展银行"><input type="radio" name="defaultbank" value="SDB"><em>深圳发展银行</em></a></td>
+								    <td><span>&nbsp;</span></td>
+								</tr>
+							    </tbody>
+							</table>
+						    </form>
+						</li>
+					    </ul>
+					    <div class="clear"></div>
+					    <p class="commit">
+						<input type="button" class="formbutton" value="确定，去付款" id="order-pay-button">&nbsp;
+						<a href="/account.php?act=charge#{$amount}">» 返回修改充值金额</a>
+					    </p>
+					</div>
+				    </div>
+
+				</div>
+				<div class="box-bottom"></div>
+			    </div>
+			</div>
+		    </div>
+		</div> <!-- bd end -->
+	    </div> <!-- bdw end -->
+
+	    <div id="ftw">
+		<!-- #BeginLibraryItem "/library/group_footer.lbi" --><!-- #EndLibraryItem -->
+	    </div>
+
+	</div> <!-- doc end -->
+
+	{insert_scripts files='mt/utilities.js,mt/core.js,mt/app-order.js,mt/app-deal.js,mt/container-min.js,mt/app-misc.js'}
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Core.init();
+	    });
+	</script>
+	<script type="text/javascript" charset="utf-8">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Order.check();
+	    });
+	</script> 
+
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<!-- $Id: vote_option.htm 16902 2009-12-18 03:56:55Z sxc_shop $ -->
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+
+<!-- start option list -->
+<div class="list-div" id="listDiv">
+			{/if}
+
+    <table cellspacing='1' cellpadding='3' id='listTable'>
+	<tr>
+	    <th>问题</th>
+	    <th>答案</th>
+	</tr>
+	{foreach from=$results  item=list}
+	<tr align="center">
+	    <td align="left" class="first-cell">
+		<span>{$list.question}</span>
+	    </td>
+	    <td><span>{$list.answer}</span></td>
+	</tr>
+	{/foreach}
+    </table>
+
+{if $full_page}
+</div>
+
+{include file="pagefooter.htm"}
+{/if}

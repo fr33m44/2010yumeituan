@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response code="0" date="2010-11-17T10:46:29+08:00" message="Ok">
+  <divisions>
+    <division>
+      <id>beijing</id>
+      <name>北京</name>
+      <location>
+        <timezone>Beijing Time</timezone>
+        <timezone_offset_gmt>288000</timezone_offset_gmt>
+        <latitude>39.904667</latitude>
+        <longitude>116.408198</longitude>
+      </location>
+    </division>
+    <division>
+      <id>shanghai</id>
+      <name>上海</name>
+      <location>
+        <timezone>Beijing Time</timezone>
+        <timezone_offset_gmt>288000</timezone_offset_gmt>
+        <latitude>31.230708</latitude>
+        <longitude>121.472916</longitude>
+      </location>
+    </division>
+    <division>
+      <id>chongqing</id>
+      <name>重庆</name>
+      <location>
+        <timezone>Beijing Time</timezone>
+        <timezone_offset_gmt>288000</timezone_offset_gmt>
+        <latitude>23.129075</latitude>
+        <longitude>113.264423</longitude>
+      </location>
+    </division>
+  </divisions>
+</response>

@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>{$group_shoptitle},{$group_shopdesc}| {$city_info.city_title}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="slides.css" rel="stylesheet" type="text/css" />
+	<link href="container.css" rel="stylesheet" type="text/css" />
+	<meta name="description" content="{$city_info.city_desc}" />
+	<meta name="keywords" content="{$city_info.city_keyword}" />
+	<!-- TemplateBeginEditable name="doctitle" -->
+	<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+	<style>
+	    
+	</style>
+	{insert_scripts files='jquery.min.js,dialog-min.js,slides.js,group.js'}
+	<script type="text/javascript">
+	    $(function(){
+		$("#comment").click(function(){
+		    dialog("团购评论","iframe:" + $(this).attr('href'),"300px","200px","iframe");
+		    return false;
+		});
+	    });
+	</script>
+    </head>
+    <body class="bg-alt ">
+	<div id="doc">
+	    <!-- #BeginLibraryItem "/library/group_header.lbi" --><!-- #EndLibraryItem -->
+	    <div id="bdw" class="bdw">
+		<div id="bd" class="cf">
+		    <div id="coupons">
+			<div class="coupons-box" id="content">
+			    <div id="dashboard" class="dashboard">
+				<!-- #BeginLibraryItem "/library/group_user_menu.lbi" --><!-- #EndLibraryItem -->
+			    </div>
+			    <div class="box clear">
+				<div class="box-top"></div>
+				<div class="box-content">
+				    <div class="head">
+					<h2>我的{$group_cardname}</h2>
+					<ul class="filter">
+					    <li class="label">分类: </li>
+					    <li {if $action eq 'coupons'}class="current"{/if}><a href="coupons.php">未使用</a></li>
+					    <li {if $action eq 'used'}class="current"{/if}><a href="coupons.php?act=used" {if $action eq 'used'}class="on"{/if}>已使用</a></li>
+					    <li {if $action eq 'expired'}class="current"{/if}><a href="coupons.php?act=expired" {if $action eq 'expired'}class="on"{/if}>已过期</a></li>
+					    <li {if $action eq 'all'}class="current"{/if}><a href="coupons.php?act=all">所有</a></li>
+					</ul>
+				    </div>
+				    <div class="sect">
+					<!--未使用-->
+					<!--{if $action eq 'coupons' || $action eq 'used' || $action eq 'expired' || $action eq 'all'}-->
+                                        <table cellspacing="0" cellpadding="0" border="0" id="coupons-table" class="coupons-table">
+					    <tbody>
+						<tr>
+						    <th width="285">团购项目</th>
+						    <th width="85"><span class="sort order-desc" >购买日期</span></th>
+						    {if $action eq 'used'}
+						    <th width="85"><span class="sort disorder-asc" >使用时间</span></th>
+						    {else}
+						    <th width="85"><span class="sort disorder-asc" >过期时间</span></th>
+						    {/if}
+						    <th width="100">操作</th>
+						</tr>
+						<!--{foreach from=$coupons_list item=coupons key=k}-->
+						<tr <!--{if $k mod 2 eq 0 }-->class="alt" <!--{/if}--> >
+						    <td class="deal">
+							<table class="deal-info">
+							    <tbody>
+								<tr>
+								    <td class="pic"><a title="{$coupons.goods_name}" target="_blank" href="{$coupons.group_url}"><img alt="" width="75" height="46" src="{$coupons.group_image}"></a></td>
+								    <td class="text"><a target="_blank" title="{$coupons.goods_name}" href="{$coupons.group_url}" class="deal-title">{$coupons.goods_name}</a></td>
+								</tr>
+							    </tbody>
+							</table>
+						    </td>
+						    <td class="time"><span class="year">{$coupons.add_date.year}年</span><br><span class="date">{$coupons.add_date.mon}月{$coupons.add_date.mday}日</span></td>
+						    {if $action eq 'used'}
+						    <td class="time"><span class="year">{$coupons.use_date.year}年</span><br><span class="date">{$coupons.use_date.mon}月{$coupons.use_date.mday}日</span></td>
+						    {else}
+						    <td class="time"><span class="year">{$coupons.add_date.year}年</span><br><span class="date">{$coupons.end_date.mon}月{$coupons.end_date.mday}日</span></td>
+						    {/if}
+						    <td class="last op" style="width:122px">
+							<div class="coupon-box" scode="" smobile="" scardid="{$coupons.card_id}">
+							    {if $coupons.is_used and $coupons.comment eq ''}
+							    <a id="comment" href="coupons.php?act=comment&id={$coupons.card_id}">评论</a>
+							    {elseif $coupons.is_used and $coupons.comment neq ''}
+							    <span style="color:#999999">已评论</span>
+							    {elseif $smarty.now gt $coupons.end_date[0]}
+							    <span style="color:#999999">已过期</span>
+							    {else}
+							    <a target="_blank" href="coupons.php?act=print&card_id={$coupons.card_id}">打印</a>
+							    <a href="#">下载</a>
+							    <a class="coupon-send" href="javascript:void(0);">发送短信</a>
+							    <div class="view">渝美券密码：xxxxxxxx</div>
+							    <div class="sendsms">
+								<form class="coupon-form" method="GET">
+								    <p class="enter">
+									<input type="text" autocomplete="off" value="{$mobile}" maxlength="11" name="mobile" class="f-text"><br>
+									<input type="submit" value="发送" class="formbutton" name="commit">
+								    </p>
+								    <p class="msg"></p>
+								</form>
+							    </div>
+							    {/if}
+							</div>
+						    </td>
+						</tr>
+						<!--{/foreach}-->
+					    </tbody>
+					</table>
+					<!--{/if}-->
+					<!-- #BeginLibraryItem "/library/group_pages.lbi" --><!-- #EndLibraryItem -->
+				    </div>
+				</div>
+				<div class="box-bottom"></div>
+			    </div>
+			</div>
+			<div id="sidebar">
+			    <div class="sbox side-save-tip">
+				<div class="sbox-top"></div>
+				<div class="sbox-content">
+				    <div class="tip">
+					<h2>通过{$group_shopname}，您已...</h2>
+					<p class="text">
+					    购买 <span>{$bought_count}</span> 份<br>
+					    共节省 <strong><span class="money">¥{$save_money}</span></strong>
+					</p>
+				    </div>
+				</div>
+				<div class="sbox-bottom"></div>
+			    </div>
+			    <div class="sbox side-help">
+				<div class="sbox-top"></div>
+				<div class="sbox-content">
+				    <div class="side-tip">
+					<h3 class="first">什么是渝美券？</h3>
+					<p>渝美券是当团购成功后，您以手机短信方式获取，或者自行下载打印使用的消费凭证（其中包含唯一优惠密码）。</p>
+					<h3>如何使用渝美券？</h3>
+					<p>当您去消费时，出示该短信或者打印的渝美券即可。打印版渝美券上通常还包含更详细的使用说明。</p>
+				    </div>
+				</div>
+				<div class="sbox-bottom"></div>
+			    </div>
+
+			</div>
+		    </div>
+		</div> <!-- bd end -->
+	    </div> <!-- bdw end -->
+
+	    <div id="ftw">
+		<!-- #BeginLibraryItem "/library/group_footer.lbi" --><!-- #EndLibraryItem -->
+	    </div>
+
+	</div> <!-- doc end -->
+
+	{insert_scripts files='mt/utilities.js,mt/core.js,mt/app-deal.js,mt/container-min.js,mt/app-misc.js'}
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Core.init();
+	    });
+	</script>
+
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Coupon.initAction();
+	    });
+	</script>
+
+    </body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>{$group_shoptitle},{$group_shopdesc}| {$city_info.city_title}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="slides.css" rel="stylesheet" type="text/css" />
+	<link href="container.css" rel="stylesheet" type="text/css" />
+	<meta name="description" content="{$city_info.city_desc}" />
+	<meta name="keywords" content="{$city_info.city_keyword}" />
+	<!-- TemplateBeginEditable name="doctitle" -->
+	<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+    </head>
+    <body class="bg-alt ">
+	<div id="doc">
+	    <!-- #BeginLibraryItem "/library/group_header.lbi" --><!-- #EndLibraryItem -->
+	    <!--{if $msg}-->
+	    <div id="sysmsg-{$msg.type}" class="sysmsgw"><div class="sysmsg">
+		    <p>{$msg.content}</p>
+		    <span class="close">关闭</span>
+		</div>
+	    </div>
+	    <!--{/if}-->
+	    <div id="bdw" class="bdw">
+		<div id="bd" class="cf">
+		    <!--{if $action eq 'get_password'}-->
+		    <div id="reset">
+			<div id="content">
+			    <div class="box">
+				<div class="box-top"></div>
+				<div class="box-content">
+				    <div class="head"><h2>找回密码</h2></div>
+				    <div class="sect">
+					<form action="login.php" method="post">
+					    <div class="field email">
+						<label for="reset-email" class="f-label">邮箱</label>
+						<input type="text" id="reset-email" class="f-input" name="email" value="{$email}">
+						<span class="hint">请输入您的注册邮箱</span>
+					    </div>
+					    <div class="act">
+						<input type="hidden" name="act" value="send_pwd_email">
+						<input type="submit" value="重设密码" class="formbutton">
+					    </div>
+					</form>
+				    </div>
+				</div>
+				<div class="box-bottom"></div>
+			    </div>
+			</div>
+			<div id="sidebar">
+			</div>
+		    </div>
+		    <!--{elseif $action eq 'reset_password'}-->
+		    <div id="reset">
+			<div id="content">
+			    <div class="box">
+				<div class="box-top"></div>
+				<div class="box-content">
+				    <div class="head"><h2>重设密码</h2></div>
+				    <div class="sect">
+                                        <form action="login.php" method="post">
+					    <div class="field email">
+						<label for="reset-password" class="f-label">新密码</label>
+						<input type="password" maxlength="32" class="f-input" id="reset-password" value="{$password}"  name="password">
+						<span class="hint">最少 6 个字符</span>
+					    </div>
+					    <div class="field email">
+						<label for="reset-password2" class="f-label">重复密码</label>
+						<input type="password" maxlength="32" class="f-input" id="reset-password2"  value="{$password2}" name="password2">
+					    </div>
+					    <div class="act">
+						<input type="hidden" value="act_edit_password" name="act">
+						<input type="hidden" value="{$uid}" name="uid">
+						<input type="hidden" value="{$code}" name="code">
+						<input type="submit" value="重设密码" class="formbutton">
+					    </div>
+					</form>
+                                    </div>
+				</div>
+				<div class="box-bottom"></div>
+			    </div>
+			</div>
+			<div id="sidebar">
+			</div>
+		    </div>
+		    <!--{else}-->
+		    <div id="login">
+			<div id="content">
+			    <div class="box">
+				<div class="box-top"></div>
+				<div class="box-content">
+				    <div class="head"><h2>登录</h2><span>&nbsp;或者 <a href="signup.php">注册</a></span></div>
+				    <div class="sect">
+					<form action="login.php" method="post" id="login-user-form">
+					    <div class="field email">
+						<label for="login-email-address">帐号或邮箱</label>
+						<input type="text" value="{$username}" class="f-input" id="login-email-address" name="username" size="30" tabindex="1">
+					    </div>
+					    <div class="field password">
+						<label for="login-password">密码</label>
+						<input type="password" value="{$password}" class="f-input" id="login-password" name="password" size="30" tabindex="2">
+						<span class="lostpassword"><a href="login.php?act=get_password">忘记密码?</a></span>
+					    </div>
+					    <div class="field autologin">
+						<input type="checkbox" class="f-check" id="autologin" name="remember" value="1" tabindex="4">
+						<label for="autologin">下次自动登录</label>
+					    </div>
+					    <div class="act">
+						<input type="hidden" name="act" value="act_login">
+						<input type="submit" class="formbutton" id="login-submit" name="commit" value="登录" tabindex="5">
+					    </div>
+					</form>
+				    </div>
+				</div>
+				<div class="box-bottom"></div>
+			    </div>
+			</div>
+			<div id="sidebar">
+			    <div class="sbox">
+				<div class="sbox-top"></div>
+				<div class="sbox-content">
+				    <div class="side-tip">
+					<h2>还没有{$group_shopname}账户？</h2>
+					<p>立即<a href="signup.php">注册</a>，仅需30秒！</p>
+				    </div>
+				</div>
+				<div class="sbox-bottom"></div>
+			    </div>
+			</div>
+		    </div>
+		    <!--{/if}-->
+		</div> <!-- bd end -->
+	    </div> <!-- bdw end -->
+	    <div id="ftw">
+		<!-- #BeginLibraryItem "/library/group_footer.lbi" --><!-- #EndLibraryItem -->
+	    </div>
+
+	</div> <!-- doc end -->
+
+	{insert_scripts files='mt/utilities.js,mt/core.js,mt/app-deal.js,mt/container-min.js'}
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Core.init();
+	    });
+	</script>
+	<script>
+	    YAHOO.util.Event.onDOMReady(function(){
+		var $D = YAHOO.util.Dom;
+		var elPassword = $D.get('reset-password');
+		elPassword.focus();
+	    });
+	</script>
+    </body>
+</html>

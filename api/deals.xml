@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response code="0" date="2010-11-17T10:39:52+08:00" message="Ok">
+  <deals>
+    <deal>
+      <id>bjwsktv</id>
+      <deal_url>http://www.meituan.com/beijing/deal/bjwsktv.html</deal_url>
+      <title>仅售58元！价值412元的温莎KTV3小时欢唱套餐，可10人同行，可累计使用，更有夜场升级使用秘籍。各位K歌之王，唱起来！</title>
+      <small_image_url>http://p1.meituan.com/120.76/deal/201011/KTV_1116200832.jpg</small_image_url>
+      <medium_image_url>http://p0.meituan.com/200.121/deal/201011/KTV_1116200832.jpg</medium_image_url>
+      <large_image_url>http://p1.meituan.com/deal/201011/KTV_1116200832.jpg</large_image_url>
+      <division_id>1</division_id>
+      <division_name>北京</division_name>
+      <division_lat>39.904667</division_lat>
+      <division_lng>116.408198</division_lng>
+      <division_timezone>Beijing Time</division_timezone>
+      <division_offset_gmt>288000</division_offset_gmt>
+      <vendor_id>温莎KTV</vendor_id>
+      <vendor_name>温莎KTV</vendor_name>
+      <vendor_website_url/>
+      <status>open</status>
+      <start_date>2010-11-17T00:00:00+08:00</start_date>
+      <end_date>2010-11-17T23:59:59+08:00</end_date>
+      <tipped>true</tipped>
+      <tipping_point>20</tipping_point>
+            <tipped_date>2010-11-17T00:58:57+08:00</tipped_date>
+            <sold_out>false</sold_out>
+      <quantity_sold>574</quantity_sold>
+      <price>58</price>
+      <value>412</value>
+      <discount_amount>354</discount_amount>
+      <discount_percent>1.4折</discount_percent>
+      <areas>
+      </areas>
+      <conditions>
+        <limited_quantity>true</limited_quantity>
+        <minimum_purchase>1</minimum_purchase>
+        <maximum_purchase>100</maximum_purchase>
+        <expiration_date>2011-01-31T00:00:00+08:00</expiration_date>
+        <details>
+          <detail>有效期截止至2011年1月31日; 营业时间：全天24小时; 
+至少提前2天致电88587777预约; 
+每张美团券最多限10人使用; 
+12.24-12.25及12.30-1.1期间不可使用; </detail>
+        </details>
+      </conditions>
+    </deal>
+  </deals>
+</response>

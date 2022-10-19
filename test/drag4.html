@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>New Document </title>
+    <meta name="Generator" content="EditPlus">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+</head>
+<body>
+    <html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+        <title>连续向左滚动文字效果</title>
+        <style type="text/css">
+<!--
+body {font-size: 9pt;color: #000000;}
+a {color: #0000FF;text-decoration: none;}
+a:hover {color: #FF0000;text-decoration: underline;}
+-->
+</style>
+    </head>
+    <body>
+        <div id="marquees">
+            赶紧干你的活去否则！嘿嘿，不给你发钱 赶紧干你的活去否则！ 
+        </div>
+        <div id="templayer" style="position: absolute; left: 0; top: 0; visibility: hidden">
+        </div>
+        <script language="JavaScript">
+
+                marqueesWidth=500; //控制滚动宽度
+                with(marquees){
+                    style.height=0;
+                    style.width=marqueesWidth;
+                    style.overflowX="hidden";
+                    style.overflowY="visible";
+                    noWrap=true;
+                    onmouseover=new Function("stopscroll=true");
+                    onmouseout=new Function("stopscroll=false");
+                }
+                    preLeft=0; currentLeft=0; stopscroll=false;
+
+                function init(){
+                    templayer.innerHTML="";
+                    while(templayer.offsetWidth<marqueesWidth){
+                    templayer.innerHTML+=marquees.innerHTML;
+                }
+                    marquees.innerHTML+=templayer.innerHTML;
+                    setInterval("scrollLeft()",20); //这里控制速度
+                }init();
+
+                function scrollLeft(){
+                if(stopscroll==true) return;
+                        preLeft=marquees.scrollLeft;
+                        marquees.scrollLeft+=1;
+                    if(preLeft==marquees.scrollLeft){
+                        marquees.scrollLeft=templayer.offsetWidth-marqueesWidth+1;
+                    }
+                }
+        </script>
+
+    </body>
+    </html>
+</body>
+</html>

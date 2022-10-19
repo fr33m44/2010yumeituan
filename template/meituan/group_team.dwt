@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>{$group_shoptitle},{$group_shopdesc}| {$city_info.city_title}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="slides.css" rel="stylesheet" type="text/css" />
+	<link href="container.css" rel="stylesheet" type="text/css" />
+	<meta name="description" content="{$city_info.city_desc}" />
+	<meta name="keywords" content="{$city_info.city_keyword}" />
+	<!-- TemplateBeginEditable name="doctitle" -->
+	<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+	{insert_scripts files='groupontime.js,jquery.min.js,dialog-min.js,slides.js,group.js'}
+    </head>
+    <body class="bg-alt ">
+	<div id="doc">
+	    <!-- #BeginLibraryItem "/library/group_header.lbi" --><!-- #EndLibraryItem -->
+	    <!--{if $msg}-->
+	    <div id="sysmsg-{$msg.type}" class="sysmsgw"><div class="sysmsg">
+		    <p>{$msg.content}</p>
+		    <span class="close">关闭</span>
+		</div>
+	    </div>
+	    <!--{/if}-->
+	    <div id="bdw" class="bdw">
+		<div id="bd" class="cf">
+		    <!--{if $show_tips neq '0'} -->
+		    <!-- #BeginLibraryItem "/library/group_guide.lbi" --><!-- #EndLibraryItem -->
+		    <!--{/if}-->
+		    <div id="deal-default">
+			<div id="content">
+			    <!-- #BeginLibraryItem "/library/group_share.lbi" --><!-- #EndLibraryItem -->
+			    <div id="deal-intro" class="cf">
+				<h1><a class="deal-today-link" href="index.php?id={$group_buy.group_id}">今日团购：</a>{$group_buy.group_name}</h1>
+				<!-- {insert name='group_stats' group_id=$group_buy.group_id}-->
+				<div class="side">
+				    <div class="deal-buy-cover-img">
+					<!--幻灯-->
+					<div class="slides">
+					    <ul class="slide-pic">
+						<!--{foreach from=$img_list item=img key=key}-->
+						<!--{if $key eq '0'}-->
+						<li><img alt="{$img.img_desc}" src="{$img.img_url}" /></li>
+						<!--{else}-->
+						<li style="display: none;"><img alt="{$img.img_desc}" src="{$img.img_url}" /></li>
+						<!--{/if}-->
+						<!--{/foreach}-->
+					    </ul>
+					    <ul class="slide-li slide-txt op">
+						<!--{foreach from=$img_count item=id}-->
+						<!--{if $id eq '1'}-->
+						<li class="cur">1</li>
+						<!--{else}-->
+						<li>{$id}</li>
+						<!--{/if}-->
+						<!--{/foreach}-->
+					    </ul>
+					</div>
+					<!--幻灯-->
+				    </div>
+				    <ul class="deal-detail-t cf">
+					{$group_buy.group_brief}
+				    </ul>
+				</div>
+			    </div>
+			    <div id="deal-stuff" class="cf">
+				<div class="box box-split">
+				    <div class="box-top"></div>
+				    <div class="box-content cf">
+					<div class="main">
+					    <h2>本单详情</h2>
+					    <div class="blk detail">
+						{$group_buy.group_desc}
+					    </div>
+					    <h2>他们说</h2>
+					    <div class="blk review">
+						<!--{foreach from=$friend_comment item=comment}-->
+						<ul class="review">
+						    <li>{$comment.friend_desc}<span>——<a href="{$comment.friend_url}" target="_blank">{$comment.friend_name}</a>（{$comment.friend_web}）</span></li></ul>
+						<!--{/foreach}-->
+					    </div>
+					    <h2>{$group_shopname}说</h2>
+					    <div class="blk voice">
+						    {$group_buy.group_comment}
+					    </div>
+					</div>
+					<div class="side">
+					    <div id="side-business">
+						<h2>{$suppliers_arr.suppliers_name}</h2>
+						<ul>
+						    {$suppliers_arr.address}
+						    <li class="traffic">
+							<strong>交通指南:</strong>
+							{$suppliers_arr.suppliers_desc}
+						    </li>
+						    <li class="map">
+							<div class="mapbody">
+							    <a class="pic" href="{$suppliers_arr.west_way}" target="_blank" title="点击查看完整地图"><img src="{$suppliers_arr.east_way}"></a>
+							    <a class="link" href="{$suppliers_arr.west_way}" target="_blank" title="点击查看完整地图">查看完整地图</a>
+							</div>
+						    </li>
+						</ul>
+					    </div>
+					</div>
+					<div class="clear"></div>
+				    </div>
+				    <div class="box-bottom">
+					<div class="go-top" style=""><a href="#doc"><span class="top-arrow">↑</span>顶部</a></div>
+				    </div>
+				</div>
+			    </div>
+			</div>
+			<div id="sidebar">
+			    <!-- #BeginLibraryItem "/library/group_ing.lbi" --><!-- #EndLibraryItem -->
+			    <!-- #BeginLibraryItem "/library/group_invite.lbi" --><!-- #EndLibraryItem -->
+			    <!-- #BeginLibraryItem "/library/group_video.lbi" --><!-- #EndLibraryItem -->
+			    <!-- #BeginLibraryItem "/library/group_ask.lbi" --><!-- #EndLibraryItem -->
+			    <!-- #BeginLibraryItem "/library/group_vote.lbi" --><!-- #EndLibraryItem -->
+			    <!-- #BeginLibraryItem "/library/group_business.lbi" --><!-- #EndLibraryItem -->
+			    <!-- #BeginLibraryItem "/library/group_gonggao.lbi" --><!-- #EndLibraryItem -->
+			</div>
+		    </div>
+		</div> <!-- bd end -->
+	    </div> <!-- bdw end -->
+
+	    <div id="ftw">
+		<!-- #BeginLibraryItem "/library/group_footer.lbi" --><!-- #EndLibraryItem -->
+	    </div>
+
+	</div> <!-- doc end -->
+
+	{insert_scripts files='mt/utilities.js,mt/core.js,mt/app-deal.js,mt/container-min.js,mt/app-misc.js'}
+	<script type="text/javascript">
+	    slides();
+	</script>
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Core.init();
+	    });
+	</script>
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Deal.refresh('bjxyt', true);
+		MT.app.Deal.toggleOtherShare(true);
+		MT.app.Deal.removeGuide();
+		MT.widget.selectAndCopy('share-copy-text', 'share-copy-button');
+		if (YAHOO.env.ua.ie) {
+		    MT.app.Deal.mailto('deal-buy-mailto');
+		}
+	    });
+	</script>
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Help.toggleList();
+	    });
+	</script>
+    </body>
+</html>

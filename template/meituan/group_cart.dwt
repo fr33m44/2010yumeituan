@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>{$group_shoptitle},{$group_shopdesc}| {$city_info.city_title}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="slides.css" rel="stylesheet" type="text/css" />
+	<link href="container.css" rel="stylesheet" type="text/css" />
+	<meta name="description" content="{$city_info.city_desc}" />
+	<meta name="keywords" content="{$city_info.city_keyword}" />
+	<!-- TemplateBeginEditable name="doctitle" -->
+	<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+	{insert_scripts files='jquery.min.js,transport.js,region.js,group.js'}
+	<script type="text/javascript">
+	    var process_request = "";
+	    region.isAdmin=false;
+	</script>
+    </head>
+    <body class="yui-skin-sam">
+	<div id="doc">
+	    <!-- #BeginLibraryItem "/library/group_header.lbi" --><!-- #EndLibraryItem -->
+	    <div id="bdw" class="bdw">
+		<div id="bd" class="cf">
+		    <div id="content">
+			<form action="buy.php" method="post" name="group_address" id="deal-buy-form">
+			    <div id="deal-buy" class="box">
+				<div class="box-top"></div>
+				<div class="box-content">
+
+				    <div class="head"><h2>提交订单</h2></div>
+				    <div class="sect">
+					<table class="order-table">
+					    <tbody>
+						<tr>
+						    <th class="deal-buy-desc">项目</th>
+						    <th class="deal-buy-quantity">数量</th>
+						    <th class="deal-buy-multi"></th>
+
+						    <th class="deal-buy-price">价格</th>
+						    <th class="deal-buy-equal"></th>
+						    <th class="deal-buy-total">总价</th>
+						</tr>
+						<tr>
+						    <td class="deal-buy-desc"><a href="index.php?id={$group_arr.group_id}">{$group_arr.goods_name}</a></td>
+						    <td class="deal-buy-quantity">
+							<input autocomplete="off" class="input-text f-input" maxlength="4" name="quantity" value="{$group_arr.goods_number}"  onkeyup="update(this.value,{$group_arr.order_id})"  id="deal-buy-quantity-input" type="text">
+						    </td>
+
+						    <td class="deal-buy-multi">x</td>
+						    <td class="deal-buy-price"><span class="money">¥</span><span id="deal-buy-price">{$group_arr.goods_price}</span></td>
+						    <td class="deal-buy-equal">=</td>
+						    <td class="deal-buy-total"><span class="money">¥</span><span id="deal-buy-total">{$group_arr.subtotal}</span></td>
+						</tr>
+                                                <tr id="cardcode-row" style="display: none;">
+
+						    <td class="deal-buy-desc">代金券：<span id="cardcode-row-n"></span></td>
+						    <td class="deal-buy-quantity"></td>
+						    <td class="deal-buy-multi"></td>
+						    <td class="deal-buy-price"></td>
+						    <td class="deal-buy-equal"></td>
+						    <td class="deal-buy-total">-<span class="money">¥</span><span id="cardcode-row-t">0</span></td>
+						</tr>
+						<!--{if $goods_type neq '1'}-->
+						<tr id="delivery-fee-row">
+						    <td class="deal-buy-desc">运费</td>
+						    <td class="deal-buy-quantity"></td>
+						    <td class="deal-buy-multi"></td>
+						    <td class="deal-buy-price"></td>
+						    <td class="deal-buy-equal"></td>
+						    <td class="deal-buy-total"><span class="money">¥</span><span id="deal-buy-delivery-fee">{$group_arr.shipping_fee}</span></td>
+						</tr>
+						<!--{/if}-->
+						<tr class="order-total">
+						    <td class="deal-buy-desc"><strong>应付总额</strong></td>
+						    <td class="deal-buy-quantity"></td>
+						    <td class="deal-buy-multi"></td>
+						    <td class="deal-buy-price"></td>
+						    <td class="deal-buy-equal">=</td>
+						    <td class="deal-buy-total"><span class="money">¥</span><strong id="deal-buy-total-t">{$group_arr.goods_amount}</strong></td>
+
+						</tr>
+					    </tbody>
+					</table>
+					<input id="deal-buy-cardcode" name="cardcode" maxlength="8"  type="hidden">
+					<input name="orderid" value="{$group_arr.order_id}" type="hidden">
+					<input type="hidden" name="extension_id" value="{$group_arr.extension_id}" />
+					<input type="hidden" value="{$consignee.address_id}" name="address_id">
+					<!--{if $goods_type eq '1'}-->
+					<div class="enter-mobile">
+					    <h3>请输入您的手机号：</h3>
+					    <p class="text">
+						<input type="text" value="{$consignee.mobile}" name="mobile" id="deal-buy-mobile-input" autocomplete="off" class="f-text">
+						<span class="tip" id="deal-buy-mobile-tip">重要：购买成功后将把{$group_cardname}密码发到您手机，凭美团券密码去商家消费。</span>
+					    </p>
+					    <div class="clear"></div>
+					</div>
+					<!--{else}-->
+					<h3 class="address">配送地址</h3>
+					<p class="address"></p>
+					<table sprovincelist="0" scity="" sprovince="" isglobal="true" style="display: block;" class="address-table" id="address-table" >
+					    <tbody>
+						<tr><th>省市区：</th>
+						    <td>
+							<input type="hidden" value="0" name="adrProvince">
+							<input type="hidden" value="0" name="adrCity">
+							<input type="hidden" value="0" name="adrDistrict">
+							<select name="province" id="selProvinces" onchange="region.changed(this, 2, 'selCities')" style="border:1px solid #ccc;">
+							    <option value="0">请选择省区</option>
+							    <!-- {foreach from=$province_list item=province} -->
+							    <option value="{$province.region_id}" {if $consignee.province eq $province.region_id}selected{/if}>{$province.region_name}</option>
+							    <!-- {/foreach} -->
+							</select>
+							<select name="city" id="selCities" onchange="region.changed(this, 3, 'selDistricts')" style="border:1px solid #ccc;">
+							    <option value="0">请选择城市</option>
+							    <!-- {foreach from=$city_list item=city} -->
+							    <option value="{$city.region_id}" {if $consignee.city eq $city.region_id}selected="selected"{/if}>{$city.region_name}</option>
+							    <!-- {/foreach} -->
+							</select>
+							<select name="district" id="selDistricts" {if $consignee.district lte '0'}style="display:none"{/if} onchange="region.set_address()">
+								<option value="0">请选择市区</option>
+							    <!-- {foreach from=$district_list item=district} -->
+							    <option value="{$district.region_id}" {if $consignee.district eq $district.region_id}selected{/if}>{$district.region_name}</option>
+							    <!-- {/foreach} -->
+
+							</select>
+							<div class="blk-error" id="address-district-error"></div>
+						    </td>
+						</tr>
+						<tr>
+						    <th>街道地址：</th>
+						    <td>
+							<input type="text" value="{$consignee.address}" class="f-input address-detail" id="address-detail" name="adrAddress" size="60" maxlength="60"  >
+							<div class="blk-error" id="address-detail-error"></div>
+						    </td>
+						</tr>
+						<tr>
+						    <th>邮政编码：</th>
+						    <td>
+							<input type="text" value="{$consignee.zipcode}" name="adrZipCode" size="10" maxlength="20" class="f-input address-zipcode" id="address-zipcode">
+							<div class="blk-error" id="address-zipcode-error"></div>
+						    </td>
+						</tr>
+						<tr>
+						    <th>收货人姓名：</th>
+						    <td><input type="text" value="{$consignee.consignee}" class="f-input address-name" id="address-name" name="adrName" size="15" maxlength="15"><div class="blk-error" id="address-name-error"></div></td>
+						</tr>
+						<tr>
+						    <th><label for="address-phone">电话号码：</label></th>
+						    <td><input type="text" value="{$consignee.mobile}" name="mobile" size="15" maxlength="20" class="f-input address-phone" id="address-phone">
+							<div class="blk-error" id="address-phone-error"></div>
+						    </td>
+						</tr>
+						<tr>
+						    <th>备注：</th>
+						    <td><textarea cols="111" rows="3"  class="f-input address-comment" id="address-name" name="deliveryComment" >{$group_arr.postscript}</textarea>
+							<span class="commenthint">订单属性（如商品款式、尺寸、颜色等）及其他说明</span>
+						    </td>
+						</tr>
+					    </tbody>
+					</table>
+					
+					<!--{/if}-->
+					<div class="form-submit">
+					    <input type="hidden" value="address" name="a" class=" ">
+					    <input class="formbutton" name="buy" value="确认无误，购买" type="submit">
+					</div>
+				    </div>
+				</div>
+				<div class="box-bottom"></div>
+			    </div>
+
+			</form>
+		    </div>
+		    <div id="sidebar">
+			<div class="sbox">
+			    <div class="sbox-top"></div>
+			    <div class="sbox-content">
+				<div class="cardcode">
+				    <h2>账户余额</h2>
+				    <p id="cardcode-link-tx" >
+					您的帐户余额：<span class="money">¥</span>{$group_arr.user_money}
+				    </p>
+				</div>
+			    </div>
+			    <div class="sbox-bottom"></div>
+			</div>
+
+		    </div>
+		</div> <!-- bd end -->
+	    </div> <!-- bdw end -->
+
+	    <div id="ftw">
+		<!-- #BeginLibraryItem "/library/group_footer.lbi" --><!-- #EndLibraryItem -->
+	    </div>
+
+	</div> <!-- doc end -->
+	{insert_scripts files='mt/utilities.js,mt/container-min.js,mt/core.js,mt/app-deal.js,mt/app-misc.js'}
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Core.init();
+	    });
+	</script>
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Deal.buy(2512,100,0);
+		MT.app.Deal.address.init();
+	    });
+	</script>
+    </body></html>

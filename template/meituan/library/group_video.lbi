@@ -1,0 +1,18 @@
+<!--{if $video}-->
+<div class="sbox side-box">
+    <div class="sbox-top"></div>
+    <div class="sbox-content">
+	<div class="tip video">
+	    <!--{foreach from=$video item=vid}-->
+	    <h2>{$vid.vid_desc}</h2>
+	    <ul>
+		
+		<li>{$vid.vid_code}</li>
+		
+	    </ul>
+	    <!--{/foreach}-->
+	</div>
+    </div>
+    <div class="sbox-bottom"></div>
+</div>
+<!--{/if}-->

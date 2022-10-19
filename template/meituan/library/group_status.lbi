@@ -1,0 +1,250 @@
+<!--{if $group_buy.status eq '1'}-->
+<!--正在进行-->
+<div class="main">
+    <div class="deal-buy">
+	<div class="deal-price-tag"></div>
+
+	<p class="deal-price">
+	    <strong>{$group_buy.formated_group_price}</strong>
+	    <span><a href="buy.php?a=cart&id={$group_buy.group_id}"><img src="images/button-deal-buy.png" alt="购买" /></a></span>
+	</p>
+
+    </div>
+    <table class="deal-discount">
+	<tbody>
+	    <tr>
+		<th>原价</th>
+		<th>折扣</th>
+		<th>节省</th>
+	    </tr>
+	    <tr>
+		<td><del>{$group_buy.formated_market_price}</del></td>
+	<td>{$group_buy.group_rebate}折</td>
+	<td>{$group_buy.formated_lack_price}</td>
+	</tr>
+	</tbody>
+    </table>
+    <div class="deal-box deal-timeleft deal-on" id="deal-timeleft" diff="{$diff}">
+	<h3>剩余时间</h3>
+	<div class="limitdate">
+	    <ul id="counter">
+		<li><span></span></li>
+		<li><span></span></li>
+		<li><span></span></li>
+	    </ul>
+	</div>
+    </div>
+    <div class="deal-box deal-status deal-status-open" id="deal-status">
+	<p class="deal-buy-tip-top"><strong>{$group_buy.orders_num}</strong> 人已购买</p>
+	<p class="deal-buy-tip-notice">数量有限，下单要快哟</p>
+	<!--{if $is_succes eq '1'}-->
+	<p class="deal-buy-on">团购已成功，<br>可继续购买…</p>
+	<!--{else}-->
+	<p class="deal-buy-on">团购已经开始，<br>正在进行…</p>
+	<!--{/if}-->
+	<!--{if $group_buy.succeed_time gt '0'}-->
+	<p class="deal-buy-tip-btm">{$group_buy.succeed_time_date}达到最低团购人数：<strong>{$group_buy.lower_orders}</strong> 人</p>
+	<!--{/if}-->
+    </div>
+</div>
+<!--/正在进行-->
+<!--{elseif $group_buy.status eq '3'}-->
+<!--团购成功-->
+<div class="main">
+    <div class="deal-buy">
+	<div class="deal-price-tag"></div>
+	<p class="deal-price"><strong>{$group_buy.formated_group_price}</strong>
+	    <span><a href="javascript:document.ecgroupon_frm.submit()"><img src="images/button-deal-buy.png" alt="购买" /></a></span>
+
+	</p>
+
+    </div>
+    <table class="deal-discount">
+	<tbody>
+	    <tr>
+		<th>原价</th>
+		<th>折扣</th>
+		<th>节省</th>
+	    </tr>
+	    <tr>
+		<td><del>{$group_buy.formated_market_price}</del></td>
+	<td>{$group_buy.group_rebate}折</td>
+	<td>{$group_buy.formated_lack_price}</td>
+	</tr>
+	</tbody>
+    </table>
+    <div class="deal-box deal-timeleft deal-on" id="deal-timeleft" diff="{$diff}">
+	<h3>剩余时间</h3>
+	<div class="limitdate">
+	    <ul id="counter">
+		<li><span></span></li>
+		<li><span></span></li>
+		<li><span></span></li>
+	    </ul>
+	</div>
+    </div>
+    <div class="deal-box deal-status deal-status-open" id="deal-status">
+	<p class="deal-buy-tip-top"><strong>{$group_buy.orders_num}</strong> 人已购买</p>
+	<p class="deal-buy-tip-notice">数量有限，下单要快哟</p>
+	<!--{if $is_succes eq '1'}-->
+	<p class="deal-buy-on">团购已成功，<br>可继续购买…</p>
+	<!--{else}-->
+	<p class="deal-buy-on">团购已经开始，<br>正在进行…</p>
+	<!--{/if}-->
+	<!--{if $group_buy.succeed_time gt '0'}-->
+	<p class="deal-buy-tip-btm">{$group_buy.succeed_time_date}达到最低团购人数：<strong>{$group_buy.lower_orders}</strong> 人</p>
+	<!--{/if}-->
+    </div>
+</div>
+<!--/团购成功-->
+<!--{elseif $group_buy.status eq '2'}-->
+<!--已结束-->
+<div class="main">
+    <div class="deal-buy">
+	<div class="deal-price-tag"></div>
+	<p class="deal-price"><strong>{$group_buy.formated_group_price}</strong>
+	    <span class="deal-price-expire"></span>
+	</p>
+
+    </div>
+    <table class="deal-discount">
+	<tbody>
+	    <tr>
+		<th>原价</th>
+		<th>折扣</th>
+		<th>节省</th>
+	    </tr>
+	    <tr>
+		<td><del>{$group_buy.formated_market_price}</del></td>
+	<td>{$group_buy.group_rebate}折</td>
+	<td>{$group_buy.formated_lack_price}</td>
+	</tr>
+	</tbody>
+    </table>
+    <div diff="0" id="deal-timeleft" class="deal-box deal-timeleft deal-off">
+	<h3>本团购结束于</h3>
+	<div class="limitdate">
+	    <p class="deal-buy-ended">{$group_buy.succeed_time_ymd}<br />{$group_buy.succeed_time_his}</p>
+	</div>
+    </div>
+    <div id="deal-status" class="deal-box deal-status deal-status-soldout">
+	<div class="deal-buy-soldout"></div>
+	<p class="deal-buy-tip-total">共有 <strong>{$group_buy.orders_num}</strong> 人购买</p>
+    </div>
+</div>
+<!--/已结束-->
+<!--{elseif $group_buy.status eq '5'}-->
+<!--卖光了-->
+<div class="main">
+    <div class="deal-buy">
+	<div class="deal-price-tag"></div> 
+	    <p class="deal-price"><strong>{$group_buy.formated_group_price}</strong>
+		<span class="deal-price-soldout"></span> 
+	    </p>
+
+    </div>
+    <table class="deal-discount">
+	<tbody>
+	    <tr>
+		<th>原价</th>
+		<th>折扣</th>
+		<th>节省</th>
+	    </tr>
+	    <tr>
+		<td><del>{$group_buy.formated_market_price}</del></td>
+	<td>{$group_buy.group_rebate}折</td>
+	<td>{$group_buy.formated_lack_price}</td>
+	</tr>
+	</tbody>
+    </table>
+    <div diff="0" id="deal-timeleft" class="deal-box deal-timeleft deal-off">
+	<h3>本团购结束于</h3>
+	<div class="limitdate">
+	    <p class="deal-buy-ended">{$group_buy.succeed_time_ymd}<br />{$group_buy.succeed_time_his}</p>
+	</div>
+    </div>
+    <div id="deal-status" class="deal-box deal-status deal-status-soldout">
+	<div class="deal-buy-soldout"></div>
+	<p class="deal-buy-tip-total">共有 <strong>{$group_buy.orders_num}</strong> 人购买</p>
+    </div>
+</div>
+<!--/卖光了-->
+<!--{elseif $group_buy.status eq '0'}-->
+<!--未开始-->
+<div class="main">
+    <div class="deal-buy">
+	<div class="deal-price-tag"></div> 
+	    <p class="deal-price"><strong>{$group_buy.formated_group_price}</strong>
+		<span><a href="javascript:document.ecgroupon_frm.submit()"><img src="images/button-deal-buy.png" alt="购买" /></a></span>
+		
+	    </p>
+
+    </div>
+    <table class="deal-discount">
+	<tbody>
+	    <tr>
+		<th>原价</th>
+		<th>折扣</th>
+		<th>节省</th>
+	    </tr>
+	    <tr>
+		<td><del>{$group_buy.formated_market_price}</del></td>
+	<td>{$group_buy.group_rebate}折</td>
+	<td>{$group_buy.formated_lack_price}</td>
+	</tr>
+	</tbody>
+    </table>
+    <div class="deal-box deal-timeleft deal-on" id="deal-timeleft" diff="{$diff}">
+	<h3>剩余时间</h3>
+	<div class="limitdate">
+	    <ul id="counter">
+		<li><span></span></li>
+		<li><span></span></li>
+		<li><span></span></li>
+	    </ul>
+	</div>
+    </div>
+    <div class="deal-box deal-status deal-status-open" id="deal-status">
+	<p class="deal-buy-tip-top"><strong>{$group_buy.orders_num}</strong> 人已购买</p>
+	<p class="deal-buy-tip-notice">数量有限，下单要快哟</p>
+	<!--{if $is_succes eq '1'}-->
+	<p class="deal-buy-on">团购已成功，<br>可继续购买…</p>
+	<!--{else}-->
+	<p class="deal-buy-on">团购已经开始，<br>正在进行…</p>
+	<!--{/if}-->
+	<!--{if $group_buy.succeed_time gt '0'}-->
+	<p class="deal-buy-tip-btm">{$group_buy.succeed_time_date}达到最低团购人数：<strong>{$group_buy.lower_orders}</strong> 人</p>
+	<!--{/if}-->
+    </div>
+</div>
+<!--/未开始-->
+<!--{elseif $group_buy.status eq '4'}-->
+<!--团购失败-->
+<div class="main">
+    <div class="deal-buy">
+	<div class="deal-price-tag"></div> 
+	    <p class="deal-price"><strong>{$group_buy.formated_group_price}</strong>
+		<span class="deal-price-expire"></span>
+	    </p>
+
+    </div>
+    <table class="deal-discount">
+	<tbody>
+	    <tr>
+		<th>原价</th>
+		<th>折扣</th>
+		<th>节省</th>
+	    </tr>
+	    <tr>
+		<td><del>{$group_buy.formated_market_price}</del></td>
+	<td>{$group_buy.group_rebate}折</td>
+	<td>{$group_buy.formated_lack_price}</td>
+	</tr>
+	</tbody>
+    </table>
+    <div id="deal-status" class="deal-box deal-status deal-status-soldout">
+	<div class="deal-buy-expired-fail"></div>
+	<p class="deal-buy-tip-total">共有 <strong>{$group_buy.orders_num}</strong> 人购买</p>
+    </div>
+</div>
+<!--{/if}-->

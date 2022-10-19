@@ -1,0 +1,118 @@
+<!-- $Id: brand_info.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="../js/transport.js,../js/region.js"}
+
+<div class="main-div">
+<form method="post" action="group_city.php" name="theForm" enctype="multipart/form-data" onsubmit="return validate()">
+<table cellspacing="1" cellpadding="3" width="100%">
+  <tr>
+    <td class="label">{$lang.city_name}</td>
+    <td>
+      <!--{if $form_action eq 'updata'}-->
+        <input name="city_name" value="{$city.city_name}" disabled="disabled" />
+       <!--{else}-->
+      <select name="country" id="selCountries" onchange="region.changed(this, 1, 'selProvinces')" style="border:1px solid #ccc;">
+        <option value="0">{$lang.please_select_country}</option>
+        <!-- {foreach from=$country_list item=country} -->
+        <option value="{$country.region_id}" {if $shop_country eq $country.region_id}selected="selected"{/if}>{$country.region_name}</option>
+        <!-- {/foreach} -->
+      </select>
+      <select name="province" id="selProvinces" onchange="region.changed(this, 2, 'selCities')" style="border:1px solid #ccc;">
+        <option value="0">{$lang.please_select_province}</option>
+        <option value="1">{$lang.country_name}</option>
+        <!-- {foreach from=$province_list item=province} -->
+        <option value="{$province.region_id}" {if $group_buy.province_id eq $province.region_id}selected="selected"{/if}>{$province.region_name}</option>
+        <!-- {/foreach} -->
+      </select>
+      <select name="city_id" id="selCities" style="border:1px solid #ccc;">
+        <option value="0">{$lang.please_select_city}</option>
+               <option value="1">{$lang.country_name}</option>
+        <!-- {foreach from=$city_list item=city} -->
+        <option value="{$city.region_id}" {if $group_buy.city_id eq $city.region_id}selected="selected"{/if}>{$city.region_name}</option>
+        <!-- {/foreach} -->
+      </select>
+     <!--{/if}--> 
+</td>
+  </tr>
+    <tr>
+    <td class="label">{$lang.city_title}</td>
+    <td><input name='city_title' value='{$city.city_title}' type='text'></input></td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.city_keyword}</td>
+    <td><input name='city_keyword' value='{$city.city_keyword}' type='text'></input></td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.city_qq}</td>
+    <td><input name='city_qq' value='{$city.city_qq}' type='text'></input></td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.city_sort}</td>
+    <td><input name='city_sort' value='{$city.city_sort}' type='text'></input></td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.city_desc}</td>
+    <td><textarea  name="city_desc" cols="60" rows="4"  >{$city.city_desc}</textarea></td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.city_notice}</td>
+    <td>{$city_notice}</td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.is_open}</td>
+    <td><input type="radio" name="is_open" value="1" {if $city.is_open eq 1}checked="checked"{/if} /> {$lang.yes}
+        <input type="radio" name="is_open" value="0" {if $city.is_open eq 0}checked="checked"{/if} /> {$lang.no}
+    </td>
+  </tr>
+    <tr>
+    <td class="label">{$lang.is_select}</td>
+    <td><input type="radio" name="is_select" value="1" {if $city.is_select eq 1}checked="checked"{/if} /> {$lang.yes}
+        <input type="radio" name="is_select" value="0" {if $city.is_select eq 0}checked="checked"{/if} /> {$lang.no}
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="2" align="center"><br />
+      <input type="submit" class="button" value="{$lang.button_submit}" />
+      <input type="reset" class="button" value="{$lang.button_reset}" />
+      <input type="hidden" name="old_city_name" value="{$city.city_name}" />
+      <input type="hidden" name="act" value="{$form_action}" />
+      <input type="hidden" name="id" value="{$city.city_id}" />
+    </td>
+  </tr>
+</table>
+</form>
+</div>
+{insert_scripts files="../js/utils.js,validator.js"}
+{literal}
+<script language="JavaScript">
+<!--
+region.isAdmin = true;
+
+onload = function()
+{
+    // 开始检查订单
+    startCheckOrder();
+}
+/**
+ * 检查表单输入的数据
+ */
+function validate()
+{
+	var city_id = document.forms['theForm']['city_id'].value;
+    if (document.forms['theForm']['selProvinces'].value == 1)
+	{
+		city_id = 1;
+		document.forms['theForm']['city_id'].value = 1;
+	}
+	if (city_id == 0)
+	{
+	    alert(no_cityid);
+		return false;
+	}
+	return true;
+}
+//-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}

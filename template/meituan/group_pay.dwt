@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>{$group_shoptitle},{$group_shopdesc}| {$city_info.city_title}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="slides.css" rel="stylesheet" type="text/css" />
+	<link href="container.css" rel="stylesheet" type="text/css" />
+	<meta name="description" content="{$city_info.city_desc}" />
+	<meta name="keywords" content="{$city_info.city_keyword}" />
+	<!-- TemplateBeginEditable name="doctitle" -->
+	<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+	{insert_scripts files='groupontime.js,jquery.min.js,dialog-min.js,slides.js,group.js'}
+    </head>
+    <body class="yui-skin-sam">
+	<div id="doc">
+	    <!-- #BeginLibraryItem "/library/group_header.lbi" --><!-- #EndLibraryItem -->
+	    <div id="bdw" class="bdw">
+		<div id="bd" class="cf">
+		    <div id="content">
+			<div id="order-pay-return" class="box">
+			    <div class="box-top"></div>
+			    <div class="box-content">
+				<div class="head success">
+				    <h2>恭喜，支付成功！</h2>
+				</div>
+				<div class="sect">
+				    <p class="info"><a href="/wuxi/deal/wxhztyj.html" target="_blank">崇安区恒泽堂女子会馆单人6次课程体验</a>已有 646 人参加，团购成功。</p>                    <div class="coupon-tip">
+					<div class="tipped">
+					    <h4>已将美团券密码发送到手机：15023153163</h4>
+					    <p class="tip">凭美团券密码即可在有效期内去商家享受超值服务啦！</p>
+					    <p class="check"><a class="lnk-button" href="/coupons" target="_blank" title="查看我的美团券">查看美团券</a></p>
+					</div>
+				    </div>
+
+				    <div class="invite">
+					<div class="top"></div>
+					<div class="content">
+					    <h3>邀请有奖</h3>
+					    <p>这是您的专用链接，邀请朋友一起来买吧，还能得 <strong>10</strong> 元返利哦～
+						<input id="share-copy-text" type="text" value="http://www.meituan.com/r/i1386809" size="30" class="f-text" /> <input id="share-copy-button" type="button" value="复制" class="formbutton" />
+					    </p>
+					    <p><a href="/account/referrals" target="_blank">更多邀请方式</a></p>
+					</div>
+					<div class="bottom"></div>
+				    </div>
+				</div>
+			    </div>
+			    <div class="box-bottom"></div>
+			</div>
+		    </div>
+		    <div id="sidebar">
+			<div class="sbox side-help">
+			    <div class="sbox">
+				<div class="sbox-top"></div>
+				<div class="sbox-content">
+				    <div class="side-tip">
+					<h3 class="first">没收到短信？</h3>
+					<ul>
+					    <li>短信可能延迟，请耐心等待；</li>
+					    <li><a href="/coupons" target="_blank">立即查看美团券</a>，下载、打印或给自己发送美团券短信；</li>
+					    <li>手机访问m.meituan.com，也能查看美团券；</li>
+					    <li>还有疑问？<a href="/wuxi/deal/consultations/wxhztyj" target="_blank">在线提问</a>，我们会尽快为您解答。</li>
+					</ul>
+				    </div>
+				</div>
+				<div class="sbox-bottom"></div>
+			    </div>
+			</div>
+		    </div>
+		</div> <!-- bd end -->
+	    </div> <!-- bdw end -->
+
+	    <div id="ftw">
+		<!-- #BeginLibraryItem "/library/group_footer.lbi" --><!-- #EndLibraryItem -->
+	    </div>
+
+	</div> <!-- doc end -->
+	{insert_scripts files='mt/utilities.js,mt/core.js,mt/app-deal.js,mt/container-min.js,mt/app-misc.js,mt/app-order.js'}
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Core.init();
+	    });
+	</script>
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Order.check();
+	    });
+	</script>
+
+    </body>
+</html>

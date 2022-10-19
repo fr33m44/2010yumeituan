@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+	<meta name="generator" content="HTML Tidy for Linux/x86 (vers 11 February 2007), see www.w3.org" />
+
+	<title>打印团购券 | {$group_cardname}</title>
+	<meta content="text/html; charset=utf-8" http-equiv="content-type" />
+	<meta content="ie=emulateie7" http-equiv="x-ua-compatible" />
+	<style type="text/css">
+	    /*<![CDATA[*/
+
+	    body {background: #fff}
+	    * {margin: 0px auto}
+	    #ecard {
+		border-bottom: #000 1px solid; border-left: #000 1px solid; margin-top: 40px; width: 698px;height:969px; clear: both; border-top: #000 1px solid; border-right: #000 1px solid
+	    }
+	    #econ {
+		margin: 0px auto 10px; width: 620px; overflow: hidden
+	    }
+	    #etop {
+		border-bottom: #000 1px solid; height: 80px;height:113px;
+	    }
+	    #logo {
+		width: 320px; float: left; height: 80px; padding-top:30px;
+	    }
+	    #welcome {
+		text-align: right; margin-top: 20px; width: 280px;  float: left; font-size: 46px;padding-top:23px;
+	    }
+	    #teamtitle {
+		text-align: left; margin-top: 8px; width: 620px; margin-bottom: 10px; font-size: 28px; font-weight: bold
+	    }
+	    #main {
+		width: 620px; margin-bottom: 20px
+	    }
+	    #main .sect{
+		margin-top:20px;
+	    }
+	    #main .sect p{
+		margin:20px 0 20px 20px;
+	    }
+	    #main h2{
+		font-size:1.2em;
+	    }
+	    #mleft {
+		line-height: 150%; width: 320px; float: left
+	    }
+	    #name {
+		margin-top: 10px; font-size: 20px; font-weight: bold
+	    }
+	    #relname {
+		padding-left: 8px; font-size: 14px
+	    }
+	    #coupon {
+		text-align: left; margin-top: 20px; font-family: "é»‘ä½“"; font-size: 26px; font-weight: bold
+	    }
+	    #coupon p {
+		line-height: 120%
+	    }
+	    #notice {
+		font-size: 14px; padding-top: 8px
+
+	    }
+	    #notice ul {
+		list-style-type: none; margin: 0px; padding-left: 0px
+	    }
+	    #notice ul li {
+		line-height: 26px
+	    }
+	    #server {
+		text-align: center; line-height: 20px; background-color: #dcdcdc; margin-top: 20px; width: 600px; height: 38px; color: #000; clear: both; font-size: 14px;
+		position: absolute; top:930px;
+	    }
+	    #server{
+		padding-top:12px;
+	    }
+	    #floater{
+		width:620px;
+	    }
+	    .left{
+		float:left;
+		width:300px;
+	    }
+	    .right{
+		float:left;
+		padding-top:20px;
+	    }
+	    .cf{
+		clear:both;
+	    }
+	    @media print
+	    {
+		.noprint {
+		    display: none
+		}
+	    }
+	    /*]]>*/
+	</style>
+    </head>
+    <body>
+	<div id="ecard">
+	    <div id="econ">
+		<div id="etop">
+		    <div id="logo"><img src="../images/print_logo.png" /></div>
+		    <div id="welcome">#{$card_arr.card_sn}</div>
+		</div>
+
+		<div id="teamtitle">
+		    {$group_arr.goods_name}
+		</div>
+
+		<div id="main">
+		    <div class="left">
+			<div class="sect"><h2>贵宾 {$card_arr.userinfo.user_name}</h2></div>
+			<div class="sect"><h2>有效期至 {$group_arr.past_time}</h2></div>
+		    </div>
+		    <div class="right">
+			<img src="barcode/code.php?codebar=BCGcode39&text={$card_arr.card_password}" alt="{$card_arr.card_password}" title="{$card_arr.card_password}" />
+		    </div>
+		    <div class="cf">
+		    </div>
+		    <div class="sect"><h2>商家信息</h2>
+			<div>
+			    {$suppliers_arr.address}
+			</div>
+		    </div>
+		    <div class="sect">
+			<h2>提示</h2>
+			<div style="float:left;width:405px;padding-top:20px;">
+			    {$group_arr.goods_comment}
+			</div>
+			<div style="float:left">
+			    <img src="{$suppliers_arr.east_way}" />
+			</div>
+		    </div>
+		    		    <div class="cf">
+		    </div>
+		</div>
+
+		<div id="server">
+		    <span>客服电话：{$group_phone} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email：{$group_email}</span>
+		</div>
+	    </div>
+	</div>
+
+	<div style="text-align: center; margin: 20px" class="noprint">
+	    <button style="padding-bottom: 10px; padding-left: 20px; padding-right: 20px; font-size: 16px; cursor: pointer; padding-top: 10px"
+		    onclick="window.print();">打印{$group_cardname}</button>
+	</div>
+    </body>
+</html>

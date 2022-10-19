@@ -1,0 +1,6 @@
+<div id="sysmsg-guide">
+    <div class="link">
+	<a href="help.php?id=67"></a>
+    </div>
+    <a class="close" href="javascript:void(0);" id="sysmsg-guide-close">关闭</a>
+</div>

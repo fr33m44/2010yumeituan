@@ -1,0 +1,51 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div id="hdw">
+    <div id="hd">
+	<div id="logo"><a href="{$index_url}" class="link"><img src="images/logo.gif" /></a></div>
+	<div class="guides">
+	    <div class="city">
+		<h2 id="header-city" class="fold" sid="{$city_info.city_id}" sslug="" sname="{$city_info.city_name}">
+		    <span>{$city_info.city_name}</span><em></em>
+		</h2>
+	    </div>
+	    <div class="city-list" id="guides-city-list">
+	    <ul>
+	     <!--{foreach from=$group_city item=city}-->
+	     <li <!--{if $city.city_id eq $cityid}-->class="current"<!--{/if}-->><a href="{$city.url}" class="opened">{$city.city_name}</a></li>
+	    <!--{/foreach}-->
+	    <li><a href="sub.php?cityid=3355">开县</a></li>
+	    <li><a href="sub.php?cityid=3328">永川</a></li>
+	    <li><a href="sub.php?cityid=3344">綦江</a></li>
+	    <li><a href="sub.php?cityid=3360">忠县</a></li>
+	    </ul>
+	    <div class="other"><a href="sub.php">其他城市？</a></div>
+	    </div>
+	</div>
+	<!--天气预报-->
+	<a href="http://php.weather.sina.com.cn/search.php?city={$city_info.city_name}&c=1&dpc=1" target="_blank">
+	    <div class="weather">
+		 <div style=" background: url(images/weather/{$weather.image}) 0 0  no-repeat;_background:none;_FILTER: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/weather/{$weather.image}', sizingMethod='crop')"></div>
+		 <span class="temp">{$weather.temp}</span> <br /><span class="desc">{$weather.weather}</span>
+	    </div>
+	</a>
+	<div id="header-subscribe-body" class="subscribe">
+	    <form action="subscribe.php" method="post" id="header-subscribe-form">
+		<label for="header-subscribe-email" class="text">想知道{$city_info.city_name}明天的团购是什么吗？</label>
+		<input id="header-subscribe-email" value="输入Email，订阅每日团购信息" class="f-text" name="email" autocomplete="off" type="text">
+		<input type="hidden" value="add_email" name="act" />
+		<input type="hidden" value="add" name="do" />
+		<input type="hidden" value="{$cityid}" name="city_id" />
+		<input class="commit" value="订阅" type="submit">
+		<span class="sms" id="header-subscribe-sms">» 短信订阅，免费！</span>
+		<span class="sms" id="header-unsubscribe-sms">» 取消手机订阅</span>
+	    </form>
+	</div>
+	<div id="header-subscribe-auto" class="email-auto"><p class="email-title">请选择您的邮箱类型...</p><ul class="email-list"></ul></div>
+	<ul class="nav cf">
+	    <!--{foreach from=$navigation key=nav item=navdesc}-->
+	    <li><a href="{$navdesc.url}" {if $nav eq 'index'} class="today"{/if}>{$navdesc.name}</a></li>
+	    <!--{/foreach}-->
+	</ul>
+	{insert name='group_member_info'}
+    </div>
+</div>

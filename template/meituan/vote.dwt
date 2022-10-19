@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>{$group_shoptitle},{$group_shopdesc}| {$city_info.city_title}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="slides.css" rel="stylesheet" type="text/css" />
+	<link href="container.css" rel="stylesheet" type="text/css" />
+	<meta name="description" content="{$city_info.city_desc}" />
+	<meta name="keywords" content="{$city_info.city_keyword}" />
+	<!-- TemplateBeginEditable name="doctitle" -->
+	<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+	{insert_scripts files='groupontime.js,jquery.min.js,dialog-min.js,slides.js,group.js'}
+    </head>
+    <body>
+	<div id="doc">
+	    <!-- #BeginLibraryItem "/library/group_header.lbi" --><!-- #EndLibraryItem -->
+	    <div id="bdw" class="bdw">
+		<div id="bd" class="cf">
+		    <div id="user-vote">
+			<div id="content">
+			    <div class="box clear">
+				<div class="box-top"></div>
+				<div class="box-content">
+				    <div class="head">
+					<h2>用户调查</h2>
+				    </div>
+				    <div class="sect">
+                                        <p class="welcome">回答几个小问题，让{$group_shopname}更好的为您服务！</p>
+					<form action="vote.php" method="post">
+					    <ol class="vote-list">
+						<!--{foreach from=$votelist item=vote key=k}-->
+						<li id="vote-list-{$vote.vote_id}" {if $vote.vote_id eq 13}style="display:none;"{/if}>
+						    <h4><?php echo $this->_var['k']+1 ?>. {$vote.vote_name}</h4>
+						    <div class="choices">
+							{if $vote.vote_id neq 13}
+							<!--{foreach from=$vote.option item=option key=k2}-->
+							{if (($k2+1) mod 5 eq 0 && $option.option_type eq 2) or $option.option_type eq 1 or $option.option_type eq 3}<br />{/if}
+							<input id="label-{$vote.vote_id}-{$option.option_id}" class="choice" id="option{$option.option_id}" type="<!--{if $option.option_type eq 1}-->radio<!--{else}-->checkbox<!--{/if}-->" name="v{$vote.vote_id}[]" value="{$option.option_id}" sid="ct{$option.option_id}"    />
+							<label for="label-{$vote.vote_id}-{$option.option_id}" class="text">{$option.option_name}</label>
+							{if $option.option_type eq 3}<input disabled="disabled"class="f-text" type="text" id="ct{$option.option_id}" name="ct{$option.option_id}"  />{/if}
+							<!--{/foreach}-->
+							{else}
+							<table class="input-table">
+							    <tbody>
+								<tr>
+								    <td class="label"><span>*</span> 姓名：</td>
+								    <td><input type="text"   name="ct85" class="f-text"><input type="hidden" value="85" name="v13[]"></td>
+								</tr>
+								<tr>
+								    <td class="label"><span>*</span> 电话：</td>
+								    <td><input type="text"   name="ct86" class="f-text"><input type="hidden" value="86" name="v13[]"></td>
+								</tr>
+								<tr>
+								    <td class="label">邮箱：</td>
+								    <td><input type="text"   name="ct87" class="f-text"><input type="hidden" value="87" name="v13[]"></td>
+								</tr>
+								<tr>
+								    <td class="label">QQ：</td>
+								    <td><input type="text"   name="ct88" class="f-text"><input type="hidden" value="88" name="v13[]"></td>
+								</tr>
+							    </tbody>
+							</table>
+							{/if}
+						    </div>
+						</li>
+						<!--{/foreach}-->
+					    </ol>
+					    <div class="commit">
+						<input type="hidden" name="act" value="save_vote" />
+						<input type="submit" value="提交" name="submit" class="formbutton">
+					    </div>
+					</form>
+				    </div>
+				</div>
+				<div class="box-bottom"></div>
+			    </div>
+			</div>
+		    </div>
+		</div> <!-- bd end -->
+	    </div> <!-- bdw end -->
+
+	    <div id="ftw">
+		<!-- #BeginLibraryItem "/library/group_footer.lbi" --><!-- #EndLibraryItem -->
+	    </div>
+
+	</div> <!-- doc end -->
+	{insert_scripts files='mt/utilities.js,mt/core.js,mt/app-deal.js,mt/container-min.js,mt/app-misc.js'}
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Core.init();
+	    });
+	</script>
+	<script type="text/javascript" charset="utf-8">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Vote.init();
+	    });
+	</script>
+
+    </body>
+</html>

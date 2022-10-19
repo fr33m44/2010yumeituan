@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>{$group_shoptitle},{$group_shopdesc}| {$city_info.city_title}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="slides.css" rel="stylesheet" type="text/css" />
+	<link href="container.css" rel="stylesheet" type="text/css" />
+	<meta name="description" content="{$city_info.city_desc}" />
+	<meta name="keywords" content="{$city_info.city_keyword}" />
+	<!-- TemplateBeginEditable name="doctitle" -->
+	<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+	{insert_scripts files='groupontime.js,jquery.min.js,dialog-min.js,slides.js,group.js'}
+    </head>
+    <body class="bg-alt ">
+	<div id="doc">
+	    <!-- #BeginLibraryItem "/library/group_header.lbi" --><!-- #EndLibraryItem -->
+	    <!--{if $msg}-->
+	    <div id="sysmsg-{$msg.type}" class="sysmsgw"><div class="sysmsg">
+		    <p>{$msg.content}</p>
+		    <span class="close">关闭</span>
+		</div>
+	    </div>
+	    <!--{/if}-->
+	    <div id="bdw" class="bdw">
+		<div id="bd" class="cf">
+		    <div id="maillist">
+			<div id="content">
+			    <div class="box">
+				<div class="box-top"></div>
+				<div class="box-content welcome">
+				    <div class="head">
+					<h2>
+					    {if $get_city_id eq 0}
+					    没有您所在的城市？
+					    {else}
+					    {$group_shopname}{$city_name}站，即将推出
+					    {/if}
+					</h2>
+				    </div>
+				    <div class="sect">
+                                        <div class="enter-address">
+					    <p class="enter-top welcome-title">
+						{if $get_city_id eq 0}
+						告诉我们您在哪个城市吧，下一步我们会在呼声最高的城市推出精品团购服务。
+						{else}
+						邮件预定{$city_name}每日最新团购信息，服务开通时第一时间通知您。
+						{/if}
+					    </p>
+					    <div class="enter-address-c">
+						<form id="enter-address-form" action="" method="post"  >
+
+						    <div class="mail">
+							<label>邮件地址：</label>
+							<input id="enter-address-mail" name="email" class="f-input f-mail" type="text"   size="20" />
+							<span class="tip">请放心，我们和您一样讨厌垃圾邮件</span>
+						    </div>
+						    <div class="city">
+							<label id="enter-address-city-label">选择您的城市：</label>
+
+							<select name="cityid" class="f-city" style="display:inline-block">
+							    <!--{foreach from=$group_city item=city}-->
+							    <option value="{$city.city_id}" {if $city.city_id eq $city_info.city_id}selected="selected"{/if}>{$city.city_name}</option>
+							    <!--{/foreach}-->
+							    <option {if $get_city_id eq 3355 }selected="selected"{/if} value="3355">开县</option>
+							    <option {if $get_city_id eq 3328 }selected="selected"{/if} value="3328">永川</option>
+							    <option {if $get_city_id eq 3344 }selected="selected"{/if}  value="3344">綦江</option>
+							    <option {if $get_city_id eq 3360 }selected="selected"{/if}  value="3360">忠县</option>
+							</select>
+							<input type="hidden" name="act" value="add_email" />
+							<input type="hidden" name="do" value="add" />
+							<input type="hidden" name="do" value="add" />
+							<input id="enter-address-city" autocomplete="off" name="cityname" class="f-input f-cityname" type="text"   style="display:none" />
+							<!--<input type="submit" onclick="return false;" value="隐藏下面提交按钮的黑色边框，不要删" style="width:0;height:0;" />-->
+							&nbsp;&nbsp;<input id="enter-address-commit" type="submit" class="formbutton" value="订阅" /><span class="tip"><a id="subscribe-other" href="/maillist/subscribe/new">没有您所在的城市？</a></span>                            </div>
+						</form>
+
+
+					    </div>
+					    <div class="clear"></div>
+					</div>
+					<div class="intro">
+					    <p>每日精品团购包括：</p>
+					    <p>餐厅、酒吧、KTV、SPA、美发、健身、瑜伽、演出、影院等。</p>
+					</div>
+                                    </div>
+				</div>
+				<div class="box-bottom"></div>
+			    </div>
+			</div>
+			<div id="sidebar">
+			    
+			    <div class="sbox side-box">
+				<div class="sbox-top"></div>
+				<div class="sbox-content">
+				    <div class="tip marketing">
+					<h3>市场合作</h3>
+					<p>如果您想加盟美团或洽谈市场合作，请联系：<br>
+					    <span>yumeituan@163.com</span>
+					</p>
+				    </div>
+				</div>
+				<div class="sbox-bottom"></div>
+			    </div>
+			    <div class="sbox side-business-tip">
+				<div class="sbox-top"></div>
+				<div class="sbox-content">
+				    <div class="tip">
+					<h2>商务合作</h2>
+					<p class="text">希望在美团网组织团购么？请<a href="feedback.php?t=5">提交团购信息</a></p>
+				    </div>
+				</div>
+				<div class="sbox-bottom"></div>
+			    </div>
+			</div>
+		    </div>
+		</div> <!-- bd end -->
+	    </div> <!-- bdw end -->
+
+	    <div id="ftw">
+		<!-- #BeginLibraryItem "/library/group_footer.lbi" --><!-- #EndLibraryItem -->
+	    </div>
+
+	</div> <!-- doc end -->
+
+	{insert_scripts files='mt/utilities.js,mt/core.js,mt/app-deal.js,mt/container-min.js,mt/app-misc.js'}
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Core.init();
+	    });
+	</script>
+	<script type="text/javascript" charset="utf-8">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Subscribe.init();
+	    });
+	</script>
+
+    </body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>{$group_shoptitle},{$group_shopdesc}| {$city_info.city_title}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="slides.css" rel="stylesheet" type="text/css" />
+	<link href="container.css" rel="stylesheet" type="text/css" />
+	<meta name="description" content="{$city_info.city_desc}" />
+	<meta name="keywords" content="{$city_info.city_keyword}" />
+	{if $redirect}
+	<meta http-equiv="refresh" content="{$redirect.time};URL={$redirect.page}" />
+	{/if}
+	<!-- TemplateBeginEditable name="doctitle" -->
+	<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+	{insert_scripts files='groupontime.js,jquery.min.js,dialog-min.js,slides.js,group.js'}
+    </head>
+    <body class="bg-alt ">
+	<div id="doc">
+	    <!-- #BeginLibraryItem "/library/group_header.lbi" --><!-- #EndLibraryItem -->
+	    <div id="bdw" class="bdw">
+		<div id="bd" class="cf">
+		    <div id="signuped">
+			<div id="content">
+			    <div class="box">
+				<div class="box-top"></div>
+				<div class="box-content">
+				    <div class="head success"><h2>{$message.title}</h2></div>
+				    <div class="sect">
+					<h3 class="notice-title">{$message.content}</h3>
+					<div class="notice-content">
+					    <p>{$message.desc}</p>
+					    <div class="help-tip">
+						<!--
+						<h3 class="help-title">收不到邮件？</h3>
+						<ul class="help-list">
+						    <li>有可能被误判为垃圾邮件了，请到垃圾邮件文件夹找找。</li>
+						</ul>
+						-->
+					    </div>
+					</div>
+				    </div>
+				    <div class="box-bottom"></div>
+				</div>
+			    </div>
+			    <div id="sidebar">
+			    </div>
+			</div>
+		    </div>
+		</div> <!-- bd end -->
+	    </div> <!-- bdw end -->
+
+	    <div id="ftw">
+		<!-- #BeginLibraryItem "/library/group_footer.lbi" --><!-- #EndLibraryItem -->
+	    </div>
+
+	</div> <!-- doc end -->
+
+	{insert_scripts files='mt/utilities.js,mt/core.js,mt/app-deal.js,mt/container-min.js'}
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Core.init();
+	    });
+	</script>
+	<script type="text/javascript" charset="utf-8">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.widget.selectAndCopy('share-copy-text', 'share-copy-button');
+	    });
+	</script>
+
+    </body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>{$group_shoptitle},{$group_shopdesc}| {$city_info.city_title}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="slides.css" rel="stylesheet" type="text/css" />
+	<link href="container.css" rel="stylesheet" type="text/css" />
+	<meta name="description" content="{$city_info.city_desc}" />
+	<meta name="keywords" content="{$city_info.city_keyword}" />
+	<!-- TemplateBeginEditable name="doctitle" -->
+	<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+	{insert_scripts files='groupontime.js,jquery.min.js,dialog-min.js,slides.js,group.js'}
+    </head>
+    <body class="bg-alt ">
+	<div id="doc">
+	    <!-- #BeginLibraryItem "/library/group_header.lbi" --><!-- #EndLibraryItem -->
+	    <div id="bdw" class="bdw">
+		<div id="bd" class="cf">
+		    <div id="consult">
+			<div id="content">
+			    <div id="dashboard" class="dashboard">
+				<!-- #BeginLibraryItem "/library/group_ask_menu.lbi" --><!-- #EndLibraryItem -->
+			    </div>
+			    <div class="box clear">
+				<div class="box-top"></div>
+				<div class="box-content">
+				    <div id="consult-form-head" class="head">
+					<h2>{$group_shopname}答疑</h2>
+					<ul class="filter">
+					    <li <!--{if $menu eq 'ask'}-->class="current"<!--{/if}-->><a href="{$ask_url}">所有</a></li>
+					    <li <!--{if $menu eq 'myask'}-->class="current"<!--{/if}-->><a href="{$myask_url}">我的提问</a></li>
+					</ul>
+				    </div>
+				    <div class="sect consult-back">
+					<a href="{$group_buy.url}">«&nbsp;返回本次团购:{$group_buy.goods_name|escape:html}</a>
+				    </div>
+				    <!-- {if $uid gt '0'}-->
+				    <div class="sect consult-form">
+					<p class="blk"><input type="button" class="formbutton" value="我要提问" id="consult-add-ask"></p>
+					<form style="display: none;" action="ask.php" method="post" id="consult-add-form">
+					    <p class="intro">有问题请在此留言，我们会尽快为您解答</p>
+					    <textarea name="question" rows="5" cols="60" class="f-textarea"></textarea>
+					    <p class="commit">
+						<input type="hidden" value="<!--{if $menu eq 'ask'}-->2<!--{else}-->4<!--{/if}-->" name="type">
+						<input type="hidden" value="add_ask" name="act">
+						<input type="hidden" value="{$group_buy.group_id}" name="id">
+						<input type="submit" class="formbutton" value="好了，提交">
+					    </p>
+					</form>
+					<div class="succ" id="consult-add-succ">
+					    <p>您的问题已成功提交，客服MM很快就会回复的，一会儿再来<a href="#">我的提问</a>中查看吧。</p>
+					    <p><a href="javascript:void(0);" id="consult-add-more">继续提问？</a></p>
+					</div>
+				    </div>
+				    <!--{else}-->
+				    <div class="sect consult-form">
+					<p class="blk">请先<a href="login.php">登录</a>或<a href="signup.php">注册</a>再提问</p>
+				    </div>
+				    <!--{/if}-->
+				    <div class="sect consult-list">
+					<ul class="list">
+					    <!-- {foreach from=$comments item=comment key=k} -->
+					    <li id="consult-entry-100507" <!--{if $k mod 2 eq 1 }-->class="alt" <!--{/if}-->>
+						<div class="item">
+						    <p class="user"><strong><!-- {if $comment.username} -->{$comment.username|truncate:"8":"***"|escape:html}<!-- {else} -->{$lang.anonymous}<!-- {/if} --></strong><span>{$comment.add_time}</span></p>
+						    <div class="clear"></div>
+						    <p class="text">{$comment.content}</p>
+						    <!--{if $comment.re_content}-->
+						    <p class="reply"><strong>回复：</strong>{$comment.re_content}</p>
+						    <!--{/if}-->
+						</div>
+					    </li>
+					    <!-- {/foreach} -->
+					</ul>
+					<!-- #BeginLibraryItem "/library/group_pages.lbi" --><!-- #EndLibraryItem -->
+				    </div>
+				</div>
+				<div class="box-bottom">
+				    <div class="go-top"><a href="#doc"><span class="top-arrow">↑</span>顶部</a></div>
+				</div>
+			    </div>
+			</div>
+			<div id="sidebar">
+			    <div class="side-promotion"><a href="/help/newbie"><img width="230" height="90" src="images/sidebar-help-tutorial.png"></a></div><div class="sbox side-box">
+				<div class="sbox-top"></div>
+				<div class="sbox-content">
+				    <div class="tip today-deal">
+					<h2>今日团购</h2>
+					<h4 class="first"><a target="_blank" title="仅售48元包快递！原价198元的《世界百年名著电影》黄金典藏版！16张DVD含42部世界文学名著改编电影原版，用电影阅读名著，并含特制MP4手机版，随时重温经典！" href="/hefei/deal/hffilm.html">仅售48元包快递！原价198元的《世界百年名著电影》黄金典藏版！16张DVD含4...</a></h4>
+					<div class="info"><div class="deal-pic"><a target="_blank" title="仅售48元包快递！原价198元的《世界百年名著电影》黄金典藏版！16张DVD含42部世界文学名著改编电影原版，用电影阅读名著，并含特制MP4手机版，随时重温经典！" href="/hefei/deal/hffilm.html"><img width="200" height="121" src="http://p0.meituan.com/200.121/deal/201011/gz_dvd_main1.jpg"></a></div><p class="total"><span class="count"><strong>167</strong>人购买</span><a class="buy" href="/deal/buy/hffilm"><img width="54" height="25" src="http://s0.meituan.com/css/i/btn-sidedeal-buy.png"></a></p><p class="price">原价：<strong class="old"><span class="money">¥</span>198</strong>折扣：<strong class="discount">2.4折</strong><br>现价：<strong><span class="money">¥</span>48</strong>节省：<strong><span class="money">¥</span>150</strong><br></p></div></div>
+				</div>
+				<div class="sbox-bottom"></div>
+			    </div>
+			</div>
+		    </div>
+		</div> <!-- bd end -->
+	    </div> <!-- bdw end -->
+
+	    <div id="ftw">
+		<!-- #BeginLibraryItem "/library/group_footer.lbi" --><!-- #EndLibraryItem -->
+	    </div>
+
+	</div> <!-- doc end -->
+
+	{insert_scripts files='mt/utilities.js,mt/core.js,mt/app-deal.js,mt/container-min.js,mt/app-misc.js'}
+	<script type="text/javascript">
+	    slides();
+	</script>
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Core.init();
+	    });
+	</script>
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Deal.addConsult();
+	    });
+	</script>
+    </body>
+</html>

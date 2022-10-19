@@ -1,0 +1,92 @@
+<!-- $Id: vote_option.htm 16902 2009-12-18 03:56:55Z sxc_shop $ -->
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<div class="form-div">
+    <form method="post" action="javascript:newVoteOption()" name="theForm">
+	添加选项名称：<input type="text" name="option_name" maxlength="100" size="30" /><br/>
+	添加选项类型：
+	<input type="radio" name="option_type" value="1"  id="option_type1" /><label for="option_type1">单选</label>
+	    <input type="radio" name="option_type" value="2"  id="option_type2" /><label for="option_type2">多选</label>
+		<input type="radio" name="option_type" value="3"  id="option_type3" /><label for="option_type3">文本</label>
+		    <br/>
+		    <input type="hidden" name="id" value="{$id}" size="30" />
+		    <input type="submit" value="{$lang.button_submit}" class="button" />
+		    </form>
+		    </div>
+
+		    <!-- start option list -->
+		    <div class="list-div" id="listDiv">
+			{/if}
+
+			<table cellspacing='1' cellpadding='3' id='listTable'>
+			    <tr>
+				<th>{$lang.option_name}</th>
+				<th>{$lang.option_order}</th>
+				<th>选项类型</th>
+				<th>{$lang.handler}</th>
+			    </tr>
+			    {foreach from=$option_arr  item=list}
+			    <tr align="center">
+				<td align="left" class="first-cell">
+				    <span onclick="javascript:listTable.edit(this, 'edit_option_name', {$list.option_id})">{$list.option_name|escape:"html"}</span>
+				</td>
+				<td><span onclick="javascript:listTable.edit(this, 'edit_option_order', {$list.option_id})">{$list.option_order}</span></td>
+				<td>{if $list.option_type eq 1}单选{elseif $list.option_type eq 2}多选{else}文本{/if}</td>
+				<td><a href="javascript:;" onclick="listTable.remove({$list.option_id}, '{$lang.drop_confirm}', 'remove_option')" title="{$lang.remove}"><img src="images/icon_drop.gif" border="0" height="16" width="16"></a>
+				</td>
+			    </tr>
+			    {/foreach}
+			</table>
+
+			{if $full_page}
+		    </div>
+
+		    <script language="JavaScript">
+			{literal}
+			onload = function()
+			{
+			    document.forms['theForm'].elements['option_name'].focus();
+
+			    // 开始检查订单
+			    startCheckOrder();
+			}
+
+			function newVoteOption()
+			{
+			    var option_type = Utils.trim(document.forms['theForm'].elements['option_type']);
+			    var option_name = Utils.trim(document.forms['theForm'].elements['option_name'].value);
+			    var id          = Utils.trim(document.forms['theForm'].elements['id'].value);
+			    for(var i=0;i<option_type.length;i++)
+				{
+				    if(option_type[i].checked)
+					{
+					    option_type_value=option_type[i].value;
+					}
+				}
+			    if (Utils.trim(option_name).length > 0)
+			    {
+				Ajax.call('vote.php?is_ajax=1&act=new_option', 'option_name=' + option_name + '&option_type=' + option_type_value +'&id=' + id, newGoodsTypeResponse, "POST", "JSON");
+			    }
+			}
+
+			function newGoodsTypeResponse(result)
+			{
+			    if (result.error == 0)
+			    {
+				document.getElementById('listDiv').innerHTML = result.content;
+				document.forms['theForm'].elements['option_name'].value = '';
+				document.forms['theForm'].elements['option_name'].focus();
+			    }
+
+			    if (result.message.length > 0)
+			    {
+				alert(result.message);
+			    }
+			}
+			{/literal}
+		    </script>
+
+		    {include file="pagefooter.htm"}
+		    {/if}

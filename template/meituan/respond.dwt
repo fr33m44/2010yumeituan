@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>{$group_shoptitle},{$group_shopdesc}| {$city_info.city_title}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="slides.css" rel="stylesheet" type="text/css" />
+	<link href="container.css" rel="stylesheet" type="text/css" />
+	<meta name="description" content="{$city_info.city_desc}" />
+	<meta name="keywords" content="{$city_info.city_keyword}" />
+	{if $redirect}
+	<meta http-equiv="refresh" content="{$redirect.time};URL={$redirect.page}" />
+	{/if}
+	<!-- TemplateBeginEditable name="doctitle" -->
+	<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+    </head>
+    <body class="bg-alt ">
+	<div id="doc">
+	    <!-- #BeginLibraryItem "/library/group_header.lbi" --><!-- #EndLibraryItem -->
+	    <div id="bdw" class="bdw">
+		<div id="bd" class="cf">
+		    <div id="signuped">
+			<div id="content">
+			    <div id="order-pay-return" class="box">
+				<div class="box-top"></div>
+				<div class="box-content">
+				    <div class="head success">
+					{if $charge eq 1}
+					<h2>恭喜，充值成功！</h2>
+					{else}
+					<h2>恭喜，支付成功！</h2>
+					{/if}
+				    </div>
+				    <div class="sect">
+					{if $charge neq 1}
+					<p class="info"><a href="index.php?id={$group_buy.group_id}" target="_blank">{$group_buy.goods_name}</a>已有 {$group_buy.orders_num} 人参加{if $group_buy.succeed_time gt 0}，团购成功。{else}，还差<span class="delta"><?php echo ($this->_var['group_buy']['lower_orders']-$this->_var['group_buy']['orders_num']) ?></span>人到达最低团购人数。{/if}</p>
+					<div class="coupon-tip">
+					    <div class="tipped">
+						{if $group_buy.succeed_time gt 0 and $group_buy.goods_type eq 1 }
+						<h4>已将{$group_cardname}密码发送到手机：{$mobile_phone}</h4>
+						{/if}
+						{if $group_buy.goods_type eq 1}
+						<p class="tip">凭{$group_cardname}密码即可在有效期内去商家享受超值服务啦！</p>
+						{/if}
+						{if $group_buy.succeed_time eq 0}
+						<p class="tip">达到最低团购人数后将把美团券密码发送到手机：{$mobile_phone}</p>
+						{/if}
+						{if $group_buy.succeed_time gt 0 and $group_buy.goods_type eq 1 }
+						<p class="check"><a class="lnk-button" href="coupons.php" target="_blank" title="查看我的{$group_cardname}">查看我的{$group_cardname}</a></p>
+						{else}
+						<p class="check"><a class="lnk-button" href="myorders.php" target="_blank" title="查看我的订单">查看我的订单</a></p>
+						{/if}
+					    </div>
+					</div>
+					{else}
+					<p class="info"> </p>
+					<div class="coupon-tip">
+					    <div class="tipped"> 
+						<p class="check"><a class="lnk-button" href="account.php?act=credit" target="_blank" title="查看我的余额">查看我的余额</a></p>
+					    </div>
+					</div>
+					{/if}
+					<div class="invite">
+					    <div class="top"></div>
+					    <div class="content">
+						<h3>邀请有奖</h3>
+						<p>这是您的专用链接，邀请朋友一起来买吧，还能得 <strong>{$rebate}</strong> 元返利哦～
+						    <input id="share-copy-text" type="text" value="{$weburl}index.php?u={$uid}" size="30" class="f-text" /> <input id="share-copy-button" type="button" value="复制" class="formbutton" />
+						</p>
+						<p><a href="invite.php" target="_blank">更多邀请方式</a></p>
+					    </div>
+					    <div class="bottom"></div>
+					</div>
+				    </div>
+				</div>
+				<div class="box-bottom"></div>
+			    </div>
+			    <div id="sidebar">
+			    </div>
+			</div>
+		    </div>
+		</div> <!-- bd end -->
+	    </div> <!-- bdw end -->
+
+	    <div id="ftw">
+		<!-- #BeginLibraryItem "/library/group_footer.lbi" --><!-- #EndLibraryItem -->
+	    </div>
+
+	</div> <!-- doc end -->
+
+	{insert_scripts files='mt/utilities.js,mt/core.js,mt/app-deal.js,mt/container-min.js'}
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Core.init();
+	    });
+	</script>
+	<script type="text/javascript" charset="utf-8">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.widget.selectAndCopy('share-copy-text', 'share-copy-button');
+	    });
+	</script>
+
+    </body>
+</html>

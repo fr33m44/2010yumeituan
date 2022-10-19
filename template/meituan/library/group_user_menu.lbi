@@ -1,0 +1,8 @@
+<ul>
+    <li {if $menu eq 'coupons'}class="current"{/if}><a href="coupons.php">我的{$group_cardname}</a><span></span></li>
+    <li {if $menu eq 'order'}class="current"{/if}><a href="myorders.php">我的订单</a><span></span></li>
+    <li {if $menu eq 'invite'}class="current"{/if}><a href="myinvite.php">我的邀请</a><span></span></li>
+    <li {if $menu eq 'credit'}class="current"{/if}><a href="account.php?act=credit">账户余额</a><span></span></li>
+    <li {if $menu eq 'settings'}class="current"{/if}><a href="account.php?act=settings">账户设置</a><span></span></li>
+    <li {if $menu eq 'ship'}class="current"{/if}><a href="account.php?act=address">配送地址</a><span></span></li>
+</ul>

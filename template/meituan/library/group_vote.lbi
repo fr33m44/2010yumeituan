@@ -1,0 +1,14 @@
+<div class="sbox side-vote-tip">
+    <div class="sbox-top"></div>
+    <div class="sbox-content">
+	<div class="tip">
+	    <h2>小调查</h2>
+	    <div class="text">
+		<p class="mark"><a target="_blank" href="vote.php">您最想团购的是什么?</a></p>
+		<p>请告诉美团，让美团更好的为您服务！</p>
+	    </div>
+	    <div class="link"><a target="_blank" href="vote.php"><img src="images/button-deal-vote.gif"></a></div>
+	</div>
+    </div>
+    <div class="sbox-bottom"></div>
+</div>

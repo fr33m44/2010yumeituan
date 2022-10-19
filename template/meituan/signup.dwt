@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>{$group_shoptitle},{$group_shopdesc}| {$city_info.city_title}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="slides.css" rel="stylesheet" type="text/css" />
+	<link href="container.css" rel="stylesheet" type="text/css" />
+	<meta name="description" content="{$city_info.city_desc}" />
+	<meta name="keywords" content="{$city_info.city_keyword}" />
+	<!-- TemplateBeginEditable name="doctitle" -->
+	<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+	{insert_scripts files='groupontime.js,jquery.min.js,dialog-min.js,slides.js,group.js'}
+    </head>
+    <body class="bg-alt ">
+	<div id="doc">
+	    <!-- #BeginLibraryItem "/library/group_header.lbi" --><!-- #EndLibraryItem -->
+	    <div id="bdw" class="bdw">
+		<div id="bd" class="cf">
+		    <div id="signup">
+			<div id="content" class="signup-box">
+			    <div class="box">
+				<div class="box-top"></div>
+				<div class="box-content">
+				    <div class="head"><h2>注册</h2><span>&nbsp;或者 <a href="/account/login">登录</a></span></div>
+				    <div class="sect">
+
+					<form id="signup-user-form" method="post" action="signup.php" sfrom="home">
+					    <div class="field email">
+						<label for="signup-email-address">邮箱</label>
+						<input type="text" size="30" name="email" id="signup-email-address" class="f-text" autocomplete="off" value="" />
+						<div id="signup-email-auto" class="email-auto"></div>
+						<span id="email-hint">&nbsp;</span>
+						<span class="hint">登录及找回密码用，不会公开</span>
+					    </div>
+
+					    <div class="field username">
+						<label for="signup-username">用户名</label>
+						<input type="text" size="30" name="username" id="signup-username" class="f-text" autocomplete="off" value="" />
+						<span id="username-hint">&nbsp;</span>
+						<span class="hint">2-16 个字符，一个汉字为两个字符</span>
+					    </div>
+					    <div class="field password">
+						<label for="signup-password">密码</label>
+
+						<input type="password" size="30" name="password" id="signup-password" class="f-text" autocomplete="off" />
+						<span id="password-hint">&nbsp;</span>
+						<span class="hint">最少 6 个字符</span>
+					    </div>
+					    <div class="field password">
+						<label for="signup-password-confirm">确认密码</label>
+						<input type="password" size="30" name="password2" id="signup-password-confirm" class="f-text" autocomplete="off" />
+						<span id="password2-hint">&nbsp;</span>
+					    </div>
+
+					    <div class="field city">
+						<label id="enter-address-city-label" for="signup-city">所在城市</label>
+						<select name="cityid" autocomplete="off" class="f-city" id="signup-city">
+						    <!--{foreach from=$group_city item=city}-->
+						    <option value="{$city.city_id}" {if $city.city_id eq $city_info.city_id}selected="selected"{/if}>{$city.city_name}</option>
+						    <!--{/foreach}-->
+						</select>
+
+						<p class="enter-city" style="display:none "><input id="enter-address-city" name="cityname" class="f-text f-cityname" type="text" autocomplete="off" value="" /></p>
+					    </div>
+					    <div class="field subscribe">
+						<input type="checkbox" value="1" name="subscribe" id="subscribe" class="f-check" checked="checked" autocomplete="off" />
+						<input type="hidden" name="act" value="act_register" class=" valid">
+						<label for="subscribe">订阅每日最新团购信息</label>
+						<span class="subscribe-hint">订阅后将收到每日团购信息邮件（可随时退订）</span>
+					    </div>
+					    <div class="act">
+
+						<input type="submit" value="注册" name="commit" id="signup-submit" class="formbutton"/>
+					    </div>
+					</form>
+				    </div>
+				</div>
+				<div class="box-bottom"></div>
+			    </div>
+			</div>
+			<div id="sidebar">
+
+			    <div class="sbox side-box">
+				<div class="sbox-top"></div>
+				<div class="sbox-content">
+				    <div class="side-tip">
+					<h2>已有{$group_shopname}账户？</h2>
+					<p>请直接<a href="login.php">登录</a>。</p>
+				    </div>
+
+				</div>
+				<div class="sbox-bottom"></div>
+			    </div>
+			</div>
+		    </div>
+		</div> <!-- bd end -->
+	    </div> <!-- bdw end -->
+
+	    <div id="ftw">
+		<!-- #BeginLibraryItem "/library/group_footer.lbi" --><!-- #EndLibraryItem -->
+	    </div>
+
+	</div> <!-- doc end -->
+
+	{insert_scripts files='mt/utilities.js,mt/core.js,mt/app-deal.js,mt/container-min.js'}
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Core.init();
+	    });
+	</script>
+	<script type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Deal.refresh('bjxyt', true);
+		MT.app.Deal.toggleOtherShare(true);
+		MT.app.Deal.removeGuide();
+		MT.widget.selectAndCopy('share-copy-text', 'share-copy-button');
+		if (YAHOO.env.ua.ie) {
+		    MT.app.Deal.mailto('deal-buy-mailto');
+		}
+	    });
+	</script>
+	{insert_scripts files='mt/app-signup.js'}
+	<script  type="text/javascript">
+	    YAHOO.util.Event.onDOMReady(function(){
+		MT.app.Signup.init();
+	    });
+	</script>
+    </body>
+</html>
